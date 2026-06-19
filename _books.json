@@ -1,0 +1,317 @@
+[
+ {
+  "n": 1,
+  "isbn": "9781786301475",
+  "lobe": "philosophy",
+  "file": "/home/cowboy/research-n-books/synthesis_01_9781786301475.md",
+  "title": "Critical Philosophy of Innovation and the Innovator"
+ },
+ {
+  "n": 2,
+  "isbn": "9781000956009",
+  "lobe": "philosophy",
+  "file": "/home/cowboy/research-n-books/synthesis_02_9781000956009.md",
+  "title": "The Philosophy of Cybersecurity"
+ },
+ {
+  "n": 3,
+  "isbn": "9781098168803",
+  "lobe": "ai-agentic",
+  "file": "/home/cowboy/research-n-books/synthesis_03_9781098168803.md",
+  "title": "The Art of Randomness: Randomized Algorithms in the Wild"
+ },
+ {
+  "n": 4,
+  "isbn": "9781482252316",
+  "lobe": "craft-code",
+  "file": "/home/cowboy/research-n-books/synthesis_04_9781482252316.md",
+  "title": "Pixel Art for Game Developers"
+ },
+ {
+  "n": 5,
+  "isbn": "9781118206539",
+  "lobe": "human",
+  "file": "/home/cowboy/research-n-books/synthesis_05_9781118206539.md",
+  "title": "The Art of Coaching"
+ },
+ {
+  "n": 6,
+  "isbn": "9781492018803",
+  "lobe": "craft-code",
+  "file": "/home/cowboy/research-n-books/synthesis_06_9781492018803.md",
+  "title": "The Art of Photography: A Personal Approach to Artistic Expression (2nd Edition)"
+ },
+ {
+  "n": 7,
+  "isbn": "9781681987774",
+  "lobe": "craft-code",
+  "file": "/home/cowboy/research-n-books/synthesis_07_9781681987774.md",
+  "title": "The Art and Science of Drawing: Learn to Observe, Analyze, and Draw Any Subject"
+ },
+ {
+  "n": 8,
+  "isbn": "9781449318482",
+  "lobe": "craft-code",
+  "file": "/home/cowboy/research-n-books/synthesis_08_9781449318482.md",
+  "title": "The Art of Readable Code"
+ },
+ {
+  "n": 9,
+  "isbn": "9781523005529",
+  "lobe": "human",
+  "file": "/home/cowboy/research-n-books/synthesis_09_9781523005529.md",
+  "title": "Humble Leadership, Second Edition: The Power of Relationships, Openness, and Trust"
+ },
+ {
+  "n": 10,
+  "isbn": "9781000876239",
+  "lobe": "human",
+  "file": "/home/cowboy/research-n-books/synthesis_10_9781000876239.md",
+  "title": "The Next Leadership Team: How to Select, Build, and Optimize Your Top Team"
+ },
+ {
+  "n": 11,
+  "isbn": "9781492045687",
+  "lobe": "human",
+  "file": "/home/cowboy/research-n-books/synthesis_11_9781492045687.md",
+  "title": "The Art of Leadership: Small Things, Done Well"
+ },
+ {
+  "n": 12,
+  "isbn": "9781597491952",
+  "lobe": "offensive",
+  "file": "/home/cowboy/research-n-books/synthesis_12_9781597491952.md",
+  "title": "Open Source Fuzzing Tools"
+ },
+ {
+  "n": 13,
+  "isbn": "9781806118335",
+  "lobe": "defensive",
+  "file": "/home/cowboy/research-n-books/synthesis_13_9781806118335.md",
+  "title": "Human Factors in Cybersecurity"
+ },
+ {
+  "n": 14,
+  "isbn": "9781119778516",
+  "lobe": "human",
+  "file": "/home/cowboy/research-n-books/synthesis_14_9781119778516.md",
+  "title": "Persuade: The Four-Step Process to Influence People and Decisions"
+ },
+ {
+  "n": 15,
+  "isbn": "9780080553405",
+  "lobe": "offensive",
+  "file": "/home/cowboy/research-n-books/synthesis_15_9780080553405.md",
+  "title": "XSS Attacks: Cross Site Scripting Exploits and Defense"
+ },
+ {
+  "n": 16,
+  "isbn": "9781040111994",
+  "lobe": "defensive",
+  "file": "/home/cowboy/research-n-books/synthesis_16_9781040111994.md",
+  "title": "Psybersecurity: Human Factors of Cyber Defence"
+ },
+ {
+  "n": 17,
+  "isbn": "9781839215643",
+  "lobe": "offensive",
+  "file": "/home/cowboy/research-n-books/synthesis_17_9781839215643.md",
+  "title": "SQL Injection Strategies: Practical techniques to secure old vulnerabilities against modern attacks"
+ },
+ {
+  "n": 18,
+  "isbn": "9781835463048",
+  "lobe": "craft-code",
+  "file": "/home/cowboy/research-n-books/synthesis_18_9781835463048.md",
+  "title": "GitHub for Next-Generation Coders: Build your ideas, share your code, and join a community of creators"
+ },
+ {
+  "n": 19,
+  "isbn": "9781804613641",
+  "lobe": "human",
+  "file": "/home/cowboy/research-n-books/synthesis_19_9781804613641.md",
+  "title": "The Art of Social Engineering: Uncover the secrets behind the human dynamics in cybersecurity"
+ },
+ {
+  "n": 20,
+  "isbn": "9781492075721",
+  "lobe": "ai-agentic",
+  "file": "/home/cowboy/research-n-books/synthesis_20_9781492075721.md",
+  "title": "Practical Fairness: Achieving Fair and Secure Data Models"
+ },
+ {
+  "n": 21,
+  "isbn": "9781394272433",
+  "lobe": "ai-agentic",
+  "file": "/home/cowboy/research-n-books/synthesis_21_9781394272433.md",
+  "title": "NLP for Software Engineering"
+ },
+ {
+  "n": 22,
+  "isbn": "9781000834185",
+  "lobe": "human",
+  "file": "/home/cowboy/research-n-books/synthesis_22_9781000834185.md",
+  "title": "The Power of Humility in Leadership: Influencing as a Role Model"
+ },
+ {
+  "n": 23,
+  "isbn": "9780735638952",
+  "lobe": "craft-code",
+  "file": "/home/cowboy/research-n-books/synthesis_23_9780735638952.md",
+  "title": "Windows 7 Resource Kit"
+ },
+ {
+  "n": 24,
+  "isbn": "9798341673830",
+  "lobe": "defensive",
+  "file": "/home/cowboy/research-n-books/synthesis_24_9798341673830.md",
+  "title": "Securing AI Systems: A Comprehensive Framework for Enterprise Defense"
+ },
+ {
+  "n": 25,
+  "isbn": "9781597499637",
+  "lobe": "offensive",
+  "file": "/home/cowboy/research-n-books/synthesis_25_9781597499637.md",
+  "title": "SQL Injection Attacks and Defense (2nd Edition)"
+ },
+ {
+  "n": 26,
+  "isbn": "9781800202092",
+  "lobe": "defensive",
+  "file": "/home/cowboy/research-n-books/synthesis_26_9781800202092.md",
+  "title": "Industrial Cybersecurity, 2nd Edition"
+ },
+ {
+  "n": 27,
+  "isbn": "9781394235872",
+  "lobe": "ai-agentic",
+  "file": "/home/cowboy/research-n-books/synthesis_27_9781394235872.md",
+  "title": "AI for Good: Applications in Sustainability, Humanitarian Action, and Health"
+ },
+ {
+  "n": 28,
+  "isbn": "9780321336323",
+  "lobe": "defensive",
+  "file": "/home/cowboy/research-n-books/synthesis_28_9780321336323.md",
+  "title": "Virtual Honeypots"
+ },
+ {
+  "n": 29,
+  "isbn": "9781637424438",
+  "lobe": "defensive",
+  "file": "/home/cowboy/research-n-books/synthesis_29_9781637424438.md",
+  "title": "Becoming Resilient: Staying Connected Under Adversity"
+ },
+ {
+  "n": 30,
+  "isbn": "9781597492133",
+  "lobe": "offensive",
+  "file": "/home/cowboy/research-n-books/synthesis_30_9781597492133.md",
+  "title": "Penetration Tester's Open Source Toolkit"
+ },
+ {
+  "n": 31,
+  "isbn": "9781788395151",
+  "lobe": "defensive",
+  "file": "/home/cowboy/research-n-books/synthesis_31_9781788395151.md",
+  "title": "Industrial Cybersecurity"
+ },
+ {
+  "n": 32,
+  "isbn": "9781633439740",
+  "lobe": "offensive",
+  "file": "/home/cowboy/research-n-books/synthesis_32_9781633439740.md",
+  "title": "Hacking Cryptography"
+ },
+ {
+  "n": 33,
+  "isbn": "9781492043850",
+  "lobe": "defensive",
+  "file": "/home/cowboy/research-n-books/synthesis_33_9781492043850.md",
+  "title": "Chaos Engineering"
+ },
+ {
+  "n": 34,
+  "isbn": "9781801078870",
+  "lobe": "offensive",
+  "file": "/home/cowboy/research-n-books/synthesis_34_9781801078870.md",
+  "title": "Privilege Escalation Techniques"
+ },
+ {
+  "n": 35,
+  "isbn": "9781803248486",
+  "lobe": "offensive",
+  "file": "/home/cowboy/research-n-books/synthesis_35_9781803248486.md",
+  "title": "Cloud Penetration Testing"
+ },
+ {
+  "n": 36,
+  "isbn": "9781597497473",
+  "lobe": "defensive",
+  "file": "/home/cowboy/research-n-books/synthesis_36_9781597497473.md",
+  "title": "UTM Security with Fortinet"
+ },
+ {
+  "n": 37,
+  "isbn": "9781119895183",
+  "lobe": "defensive",
+  "file": "/home/cowboy/research-n-books/synthesis_37_9781119895183.md",
+  "title": "If It's Smart, It's Vulnerable"
+ },
+ {
+  "n": 38,
+  "isbn": "9781806022595",
+  "lobe": "ai-agentic",
+  "file": "/home/cowboy/research-n-books/synthesis_38_9781806022595.md",
+  "title": "Agentic Coding with Claude Code"
+ },
+ {
+  "n": 39,
+  "isbn": "9781806029570",
+  "lobe": "ai-agentic",
+  "file": "/home/cowboy/research-n-books/synthesis_39_9781806029570.md",
+  "title": "Agentic Architectural Patterns"
+ },
+ {
+  "n": 40,
+  "isbn": "9781394379606",
+  "lobe": "ai-agentic",
+  "file": "/home/cowboy/research-n-books/synthesis_40_9781394379606.md",
+  "title": "Agentic AI For Dummies"
+ },
+ {
+  "n": 41,
+  "isbn": "9781835888643",
+  "lobe": "ai-agentic",
+  "file": "/home/cowboy/research-n-books/synthesis_41_9781835888643.md",
+  "title": "Learn Mistral AI"
+ },
+ {
+  "n": 42,
+  "isbn": "9798341655140",
+  "lobe": "offensive",
+  "file": "/home/cowboy/research-n-books/synthesis_42_9798341655140.md",
+  "title": "From Day Zero to Zero Day"
+ },
+ {
+  "n": 43,
+  "isbn": "9781835085806",
+  "lobe": "offensive",
+  "file": "/home/cowboy/research-n-books/synthesis_43_9781835085806.md",
+  "title": "The Ultimate Kali Linux Book, 3rd Edition"
+ },
+ {
+  "n": 44,
+  "isbn": "9781492067504",
+  "lobe": "offensive",
+  "file": "/home/cowboy/research-n-books/synthesis_44_9781492067504.md",
+  "title": "Attacking Network Protocols"
+ },
+ {
+  "n": 45,
+  "isbn": "9780857085399",
+  "lobe": "human",
+  "file": "/home/cowboy/research-n-books/synthesis_45_9780857085399.md",
+  "title": "The Art of Conversation"
+ }
+]

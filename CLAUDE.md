@@ -1,4 +1,4 @@
-# Engram (repo self-loader)
+# Chainsaw (repo self-loader)
 
 This repo is a collective brain built from 45 books, read in full. The full
 text of every book is in `books/` and is the substance; the cards in

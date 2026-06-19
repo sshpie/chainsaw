@@ -1,4 +1,4 @@
-# Engram index
+# Chainsaw index
 
 The router. Match a task to its lobe by signal, load that lobe and its named cards, then follow the chain map across lobes. The framework is always-on; this index just points.
 

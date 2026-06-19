@@ -1,12 +1,8 @@
-# THE FULL CONTEXT is kept LOCAL for our research. These are copyrighted
-# O'Reilly book texts and detailed syntheses of them. They are the substance of
-# the brain, they live on rooster with us, and they are never published.
-books/
-syntheses/
+# Private repo. The whole brain lives here: full book texts, syntheses, the map,
+# and the build helpers. The only boundary is "keep this repo private" (the book
+# texts are copyrighted O'Reilly content). Nothing brain-related is excluded.
 
-# Build helpers
-_books.json
-_assemble.py
-
-# The publishable layer is the MAP only: README.md, FRAMEWORK.md, CLAUDE.md,
-# brain/cards, brain/lobes, brain/INDEX.md, load/, USAGE.md
+# OS and editor junk
+.DS_Store
+*.swp
+*~

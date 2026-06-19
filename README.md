@@ -1,14 +1,16 @@
-# Engram
+# Chainsaw
 
 A loadable, collective brain built from 45 books, read cover to cover, with
 their **full text kept available** as the substance. The distilled cards,
 lobes, and framework are the map on top. The books are the territory.
 
-Engram is not a reading list and not a pile of summaries. It is one brain,
+Chainsaw is not a reading list and not a pile of summaries. It is one brain,
 built so the books reinforce each other. You load it as context and it makes
 every skill sharper, because every part feeds every other part.
 
-> Working name. Rename the repo freely; nothing depends on the word "engram."
+> The name is the growth model. A chainsaw carves. We keep all 45 books in full
+> now, and over time we cut away what usage shows we do not need (USAGE.md).
+> Private repo: the full texts live here, with us, not in public.
 
 ## The one claim
 
@@ -32,11 +34,11 @@ works when the whole brain is loaded and the parts talk.
 ## How it thinks (like a brain)
 
 A human brain does not look up one fact and stop. Small traces of information,
-engrams, fire together and brew. A melody loosens a stuck function. A sketch
+memory traces, fire together and brew. A melody loosens a stuck function. A sketch
 unlocks a recon angle. Distant parts prime each other, and the answer comes
 from the combination, not the lookup.
 
-Engram works that way. Each card is a small unit, a trace, and it points at the
+Chainsaw works that way. Each card is a small unit, a trace, and it points at the
 full book behind it. Loading one fires its neighbors through the chain links,
 which are the synapses. Distant domains are wired to prime each other on
 purpose: music to programming, drawing to recon, exploitation to leadership.
@@ -83,7 +85,7 @@ the task calls for and chain them across racks.
 ```
 THE TERRITORY (substance)        THE MAP (navigation)            THE LOADER (context)
 books/  x45                      FRAMEWORK.md  (always-on)       load/SKILL.md
-  full text of every book          the collective doctrine         /engram <task> -> picks the
+  full text of every book          the collective doctrine         /chainsaw <task> -> picks the
   the part that helps may be      brain/INDEX.md                    book(s) from the map, loads
   the part no summary kept          signal -> lobe -> book          their FULL TEXT, brews
                                     + the chain map (synapses)
@@ -123,7 +125,7 @@ philosophy   (2): 01 02
 6. Brew, then act. The answer comes from the combination of full contexts.
 
 ```
-$ /engram map attack surface on an unknown industrial protocol
+$ /chainsaw map attack surface on an unknown industrial protocol
   map says: offensive (44, 42, 30) + defensive (26, 31, 28) + craft (07) + human (19)
   loads:    the FULL TEXT of the books the task actually needs, brews them
 ```
@@ -132,8 +134,9 @@ $ /engram map attack surface on an unknown industrial protocol
 
 Built by Nuclide (Nick + Claude) from the "Research-N" O'Reilly Learning
 playlist, 45 books read in full. The full texts and syntheses are copyrighted
-and stay local (see .gitignore); they are never published. The publishable
-layer is the map: README, FRAMEWORK, cards, lobes, INDEX, loader.
+O'Reilly content. This is a PRIVATE repo: the full texts live here with the map
+so the brain is whole in one place. Keep it private. Do not make it public and
+do not mirror the book text anywhere public.
 
 ## Repo map
 
@@ -141,14 +144,14 @@ layer is the map: README, FRAMEWORK, cards, lobes, INDEX, loader.
 README.md            this file
 FRAMEWORK.md         the collective doctrine (always-on)
 USAGE.md             the growth model: keep everything, prune by usage
-books/               full text of all 45 books            (local only)
-syntheses/           per-book read-proof + structure      (local only)
+books/               full text of all 45 books            (private)
+syntheses/           per-book read-proof + structure      (private)
 brain/
   INDEX.md           router: signal -> lobe -> book, plus the chain map
   lobes/             6 lobe doctrines
   cards/             45 navigation cards (index into full text)
 load/
-  SKILL.md           the /engram loader skill
+  SKILL.md           the /chainsaw loader skill
   AGENT.md           the think-tank subagent
 CLAUDE.md            repo-level self-loader
 ```

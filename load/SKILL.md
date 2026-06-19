@@ -1,11 +1,11 @@
 ---
-name: engram
+name: chainsaw
 description: Load the collective brain (45 books, full text) as context for a task. Use when working on vulnerability research, tool-building, writing, leadership, design, or any task that would be sharper for cross-domain priming. Routes the task to its books via the cards, then loads the FULL TEXT of the ones it needs and brews distant parts in.
 ---
 
-# Engram loader
+# Chainsaw loader
 
-Engram is a collective brain built from 45 books, read in full. The full text
+Chainsaw is a collective brain built from 45 books, read in full. The full text
 of every book is the substance and lives in `books/`. The cards are the map: a
 small unit per book that says when to reach for it, what it chains with, and
 where to look. The card is the index. The book is what you read.
@@ -15,7 +15,7 @@ brew, and distant domains prime each other on purpose. Your job when this skill
 runs is to route to the right books and load their real text, not stop at a
 summary.
 
-Default brain location: `/home/cowboy/engram` (adjust if cloned elsewhere).
+Default brain location: `/home/cowboy/chainsaw` (adjust if cloned elsewhere).
 
 ## How to load (associative recall, not lookup)
 
