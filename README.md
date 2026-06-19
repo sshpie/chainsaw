@@ -130,6 +130,63 @@ $ /chainsaw map attack surface on an unknown industrial protocol
   loads:    the FULL TEXT of the books the task actually needs, brews them
 ```
 
+## See it think (a worked brew)
+
+One real task: a public LLM gateway leaks one row of its own routing table,
+and that row hands an outsider the internal network map. The brain reads the
+single survey row through eight books across four lobes. No probe, no connect.
+This is the one claim made visible: the books are not applied one at a time,
+they brew together, and the answer comes from the crossing.
+
+The brew, in the order the brain produced it.
+
+**Verdict and what it is.** Lead with the answer, then the architecture the
+finding implies. The leaked field is one cell of a known table shape, so the
+table is the finding, not the cell.
+
+![Verdict and architecture](docs/brew/01-verdict.png)
+![The gateway architecture](docs/brew/02-architecture.png)
+![Agent router and the dual surface](docs/brew/03-router.png)
+
+**The distant primer (#07 craft lobe) draws the line.** *The Art and Science
+of Drawing* is pulled the way music primes programming. Its lift: block in the
+target, then force one hard division between the measured side and the
+constructed side, and never let an inference creep up into a fact.
+
+![Measured vs constructed](docs/brew/04-measured-vs-constructed.png)
+
+**The spine walks source to sink (#42, #39, #24).** *From Day Zero to Zero
+Day* runs the taint walk. The reachable dangerous sink is done; the open half
+is whether an attacker can write its target, and that is the severity hinge we
+did not test.
+
+![The chain, source to sink](docs/brew/05-chain.png)
+
+**The governor sets the band (#02).** *The Philosophy of Cybersecurity* cuts
+the adjective and sets the band by CIA before any word. MEDIUM, escalates to
+HIGH on the entropy question, and "critical" gets cut for want of proof.
+
+![Severity, the band](docs/brew/06-severity.png)
+
+**The skeptic gate (#28).** *Virtual Honeypots* runs the bidirectional skeptic
+pass. A tidy port-3000 gateway over RFC1918 is exactly the bait a deception
+fleet plants, so the call stays a candidate with read-only discriminators.
+
+![Skeptic gate](docs/brew/07-skeptic-gate.png)
+
+**The avenues and the fix.** Six read-only verification paths, none exercised
+without a scope call, and a falsifiable remediation for the class (#24).
+
+![Read-only verification path](docs/brew/08-verification.png)
+![Remediation for the class](docs/brew/09-remediation.png)
+
+**Provenance.** The brain shows its work: the spine, the chained books, the
+governor, the distant primer, and the crossings where the thinking happened.
+The craft book from a non-security lobe is the reason this reads as a banded,
+honest finding instead of an inked drama off one scan row.
+
+![Chainsaw provenance](docs/brew/10-provenance.png)
+
 ## Provenance and boundary
 
 Built by Nuclide (Nick + Claude) from the "Research-N" O'Reilly Learning
@@ -153,5 +210,7 @@ brain/
 load/
   SKILL.md           the /chainsaw loader skill
   AGENT.md           the think-tank subagent
+docs/
+  brew/              a worked brew, screenshots of the brain thinking
 CLAUDE.md            repo-level self-loader
 ```
