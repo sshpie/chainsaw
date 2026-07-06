@@ -1,10 +1,10 @@
 # The Chainsaw Framework
 
-This is the loadable collective brain: 45 books across 6 lobes, read in full and
+This is the loadable collective brain: 65 books across 7 lobes, read in full and
 kept in full, compiled into one operating doctrine for ICS/OT and
-AI-infrastructure security research. The six lobes are Offensive, Defensive, AI
-and Agentic, Craft and Code, Human and Influence, and Philosophy. The one claim
-that unifies all 45: using them together improves every single skill each of
+AI-infrastructure security research. The seven lobes are Offensive, Defensive, AI
+and Agentic, Craft and Code, Human and Influence, Philosophy, and Bio and
+Compute. The one claim that unifies all 65: using them together improves every single skill each of
 them teaches, because the skill any one book names is also half-described by
 four others wearing different costumes.
 
@@ -13,7 +13,7 @@ four others wearing different costumes.
 The brain is used as a collective. No card is applied alone. The cross-links are
 the product, not a footnote to it. Each book is a lens, and any single skill
 sharpens when you stack lenses from more than one lobe on it at once. Loading
-the 45 together lifts every individual skill each book covers. Worked examples,
+the 65 together lifts every individual skill each book covers. Worked examples,
 each one skill lifted by several lobes firing together:
 
 - RECON. Trained observation is not one book's property. Drawing (#7) teaches
@@ -60,7 +60,7 @@ each one skill lifted by several lobes firing together:
 
 ## Full context, no shortcuts (the substance)
 
-The full text of all 45 books is the substance of this brain and lives in
+The full text of all 65 books is the substance of this brain and lives in
 `books/`. We did not replace the books with summaries. A summary pre-decides
 what matters before we have any evidence of what matters, and the part of a book
 that cracks a hard problem is often the part no summary would keep.
@@ -80,7 +80,7 @@ never prune to look tidy. See USAGE.md.
 Every book counts the same. There is no flagship, no core, no tier. A lobe with
 two books is not lesser than a lobe with eleven; that is domain size, not
 importance. They improve each other equally and in every direction, so the brain
-is a full mesh, not a hub with spokes. Nothing here ranks the 45. The chain map
+is a full mesh, not a hub with spokes. Nothing here ranks the 65. The chain map
 proves it: every book is wired to at least one other, and the crossing is where
 the brain thinks.
 

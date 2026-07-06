@@ -1,11 +1,11 @@
 ---
 name: chainsaw
-description: Load the collective brain (45 books, full text) as context for a task. Use when working on vulnerability research, tool-building, writing, leadership, design, or any task that would be sharper for cross-domain priming. Routes the task to its books via the cards, then loads the FULL TEXT of the ones it needs and brews distant parts in.
+description: Load the collective brain (65 books, full text) as context for a task. Use when working on vulnerability research, tool-building, writing, leadership, design, computational biology, optimization, or any task that would be sharper for cross-domain priming. Routes the task to its books via the cards, then loads the FULL TEXT of the ones it needs and brews distant parts in.
 ---
 
 # Chainsaw loader
 
-Chainsaw is a collective brain built from 45 books, read in full. The full text
+Chainsaw is a collective brain built from 65 books, read in full. The full text
 of every book is the substance and lives in `books/`. The cards are the map: a
 small unit per book that says when to reach for it, what it chains with, and
 where to look. The card is the index. The book is what you read.
@@ -23,8 +23,10 @@ Default brain location: `/home/cowboy/chainsaw` (adjust if cloned elsewhere).
    system: the collective effect, the cross-lobe threads, the tensions, and
    the map to the assessment method.
 
-2. **Read the router.** Read `brain/INDEX.md`. Match the task to its lobe(s) and
-   the specific book numbers by signal.
+2. **Read the router.** Run `chainsaw route "<task>"` for the lobe(s), book
+   numbers, full-text paths, and one priming pick in a single call, or read
+   `brain/INDEX.md` by hand and match the task to its lobe(s) and book numbers
+   by signal. The CLI routes; it never substitutes a card for the book.
 
 3. **Open the cards as the index.** Read the cards in `brain/cards/` the task
    names. The card tells you which book, when it applies, and where to look.
@@ -51,7 +53,7 @@ Default brain location: `/home/cowboy/chainsaw` (adjust if cloned elsewhere).
 
 ## Token discipline
 
-Never load all 45 full texts at once; the corpus is millions of words. Load the
+Never load all 65 full texts at once; the corpus is millions of words. Load the
 framework (always), the index, the cards that route you, and then the FULL TEXT
 of only the one to three books the task and its chains call for, plus one
 priming book. That is the whole brain working at a sane weight: full context
@@ -66,5 +68,5 @@ USAGE.md.
 
 ## When NOT to use
 
-Trivial mechanical edits, or tasks with no skill the 45 books touch. The brain
+Trivial mechanical edits, or tasks with no skill the 65 books touch. The brain
 is for work that gets sharper when distant parts combine.

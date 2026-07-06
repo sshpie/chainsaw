@@ -1,6 +1,6 @@
 # Chainsaw
 
-A loadable, collective brain built from 45 books, read cover to cover, with
+A loadable, collective brain built from 65 books, read cover to cover, with
 their **full text kept available** as the substance. The distilled cards,
 lobes, and framework are the map on top. The books are the territory.
 
@@ -8,13 +8,13 @@ Chainsaw is not a reading list and not a pile of summaries. It is one brain,
 built so the books reinforce each other. You load it as context and it makes
 every skill sharper, because every part feeds every other part.
 
-> The name is the growth model. A chainsaw carves. We keep all 45 books in full
+> The name is the growth model. A chainsaw carves. We keep all 65 books in full
 > now, and over time we cut away what usage shows we do not need (USAGE.md).
 > Private repo: the full texts live here, with us, not in public.
 
 ## The one claim
 
-Using the 45 books as a collective improves every single skill each of them
+Using the 65 books as a collective improves every single skill each of them
 teaches. They are not applied one at a time. They compound.
 
 ```
@@ -46,7 +46,7 @@ The brain is most useful when you let an unrelated part brew with the task.
 
 ## Full context, no shortcuts
 
-The full text of all 45 books is in the brain. We did not replace the books
+The full text of all 65 books is in the brain. We did not replace the books
 with summaries, because a summary pre-decides what matters before we have any
 evidence of what matters. When a task pulls a book, it pulls the full text. The
 card just tells you which book and where to look.
@@ -59,9 +59,9 @@ USAGE.md.
 ## Flat weight (no best book)
 
 Every book counts the same. There is no flagship, no core, no tier. A lobe with
-two books is not lesser than a lobe with eleven; that is domain size, not
+two books is not lesser than a lobe with eighteen; that is domain size, not
 importance. They improve each other equally and in every direction, so the
-brain is a full mesh, not a hub with spokes. Nothing here ranks the 45.
+brain is a full mesh, not a hub with spokes. Nothing here ranks the 65.
 
 ## How it was built
 
@@ -72,11 +72,11 @@ cards over full books. You do not load the whole library; you pull the books
 the task calls for and chain them across racks.
 
 ```
-45 books read in full
+65 books read in full
    -> full text retained (books/)                        THE SUBSTANCE
    -> per-book synthesis (read-proof + structure)        the read layer
       -> per-book BRAIN CARD (map: which book, when, what it chains with)
-         -> 6 LOBE doctrines (how each domain acts as one capability)
+         -> 7 LOBE doctrines (how each domain acts as one capability)
             -> 1 FRAMEWORK (the collective doctrine, always-on)
 ```
 
@@ -84,32 +84,33 @@ the task calls for and chain them across racks.
 
 ```
 THE TERRITORY (substance)        THE MAP (navigation)            THE LOADER (context)
-books/  x45                      FRAMEWORK.md  (always-on)       load/SKILL.md
+books/  x65                      FRAMEWORK.md  (always-on)       load/SKILL.md
   full text of every book          the collective doctrine         /chainsaw <task> -> picks the
   the part that helps may be      brain/INDEX.md                    book(s) from the map, loads
   the part no summary kept          signal -> lobe -> book          their FULL TEXT, brews
                                     + the chain map (synapses)
-syntheses/  x45                  brain/lobes/*.md  x6             load/AGENT.md
+syntheses/  x65                  brain/lobes/*.md  x7             load/AGENT.md
   proof-of-read + structure        through-line + moves +          a think-tank subagent,
   per book                         collective lift per domain      grounded in the full brain
-                                 brain/cards/*.md  x45
+                                 brain/cards/*.md  x65
                                    reach-for-when / principles /  CLAUDE.md
                                    moves / chains / watch-out      drop the repo into a project,
                                    (the index into full text)      framework self-loads
 ```
 
-## The six lobes
+## The seven lobes
 
-All 45 books placed, no overlap. Lobes keep token weight sane; they do not wall
+All 65 books placed, no overlap. Lobes keep token weight sane; they do not wall
 the books off. The framework and the chain links cross every wall.
 
 ```
-offensive   (11): 12 15 17 25 30 32 34 35 42 43 44
-defensive   (10): 13 16 24 26 28 29 31 33 36 37
+offensive   (18): 12 15 17 25 30 32 34 35 42 43 44 46 47 48 49 50 53 54
+defensive   (12): 13 16 24 26 28 29 31 33 36 37 51 52
 ai-agentic   (8): 03 20 21 27 38 39 40 41
 craft-code   (6): 04 06 07 08 18 23
 human        (8): 05 09 10 11 14 19 22 45
 philosophy   (2): 01 02
+bio-compute (11): 55 56 57 58 59 60 61 62 63 64 65
 ```
 
 ## How to load the brain
@@ -129,6 +130,26 @@ $ /chainsaw map attack surface on an unknown industrial protocol
   map says: offensive (44, 42, 30) + defensive (26, 31, 28) + craft (07) + human (19)
   loads:    the FULL TEXT of the books the task actually needs, brews them
 ```
+
+## The tool (chainsaw CLI)
+
+The brain is also a thin command-line tool, on PATH as `chainsaw`. It routes,
+serves full text, logs what fires, surfaces prune candidates, and ingests new
+books. It never summarizes in place of a book; the brew stays in the model.
+
+```
+chainsaw route "<task>"   lobe(s) + book numbers + full-text paths + 1 priming pick
+chainsaw read <NN[-MM]>   cat the full text of a book (territory, not the map)
+chainsaw list [lobe]      the manifest
+chainsaw fire <NN..> --task T --lift L   append a USAGE.md fire-log row
+chainsaw prune            books with zero fires (the prune-by-usage engine)
+chainsaw add <pdf> --lobe L --title T    slot a new book (additive)
+```
+
+`route` is the index step made mechanical. `read` is the one rule made
+executable: it serves the book, not the card. `fire` and `prune` run the
+keep-everything-prune-by-usage growth model from USAGE.md. `add` plus a distill
+pass is how books 46-54 entered the brain.
 
 ## See it think (a worked brew)
 
@@ -190,7 +211,7 @@ honest finding instead of an inked drama off one scan row.
 ## Provenance and boundary
 
 Built by Nuclide (Nick + Claude) from the "Research-N" O'Reilly Learning
-playlist, 45 books read in full. The full texts and syntheses are copyrighted
+playlist, 65 books read in full. The full texts and syntheses are copyrighted
 O'Reilly content. This is a PRIVATE repo: the full texts live here with the map
 so the brain is whole in one place. Keep it private. Do not make it public and
 do not mirror the book text anywhere public.
@@ -201,12 +222,12 @@ do not mirror the book text anywhere public.
 README.md            this file
 FRAMEWORK.md         the collective doctrine (always-on)
 USAGE.md             the growth model: keep everything, prune by usage
-books/               full text of all 45 books            (private)
+books/               full text of all 65 books            (private)
 syntheses/           per-book read-proof + structure      (private)
 brain/
   INDEX.md           router: signal -> lobe -> book, plus the chain map
-  lobes/             6 lobe doctrines
-  cards/             45 navigation cards (index into full text)
+  lobes/             7 lobe doctrines
+  cards/             65 navigation cards (index into full text)
 load/
   SKILL.md           the /chainsaw loader skill
   AGENT.md           the think-tank subagent

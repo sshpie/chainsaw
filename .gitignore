@@ -6,3 +6,6 @@
 .DS_Store
 *.swp
 *~
+
+# Raw source PDFs (text already extracted into books/). Local only, keep out of git.
+_incoming/

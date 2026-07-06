@@ -1,0 +1,3243 @@
+Complete Guide to Shodan
+Collect. Analyze. Visualize. Make Internet Intelligence Work
+for You.
+John Matherly
+This book is for sale at http://leanpub.com/shodan
+This version was published on 2016-10-10
+
+This is a Leanpub book. Leanpub empowers authors and publishers with the Lean Publishing
+process. Lean Publishing is the act of publishing an in-progress ebook using lightweight tools and
+many iterations to get reader feedback, pivot until you have the right book and build traction once
+you do.
+© 2015 - 2016 Shodan, LLC
+
+Tweet This Book!
+Please help John Matherly by spreading the word about this book on Twitter!
+The suggested hashtag for this book is #shodan.
+Find out what other people are saying about the book by clicking on this link to search for this
+hashtag on Twitter:
+https://twitter.com/search?q=#shodan
+
+Contents
+Introduction . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+All About the Data . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Data Collection . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+SSL In Depth . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Beyond the Basics . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+1
+1
+3
+4
+7
+
+Web Interfaces . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Search Query Explained . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Introducing Filters . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Shodan Search Engine . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Shodan Maps . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Shodan Exploits . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Shodan Images . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Exercises: Website . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+10
+10
+11
+12
+18
+25
+26
+28
+
+External Tools . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Shodan Command-Line Interface . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Maltego Add-On . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Browser Plug-Ins . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Exercises: Command-Line Interface . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+29
+29
+37
+37
+38
+
+Developer API . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Usage Limits . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Introducing Facets . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Getting Started . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Initialization . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Search . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Host Lookup . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Scanning . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Real-Time Stream . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Network Alert . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Example: Public MongoDB Data . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Exercises: Shodan API . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+39
+39
+40
+41
+41
+41
+43
+43
+44
+45
+48
+53
+
+CONTENTS
+
+Industrial Control Systems . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Common Abbreviations . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Protocols . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Securing Internet-Connected ICS . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Use Cases . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+54
+54
+54
+56
+56
+
+Appendix A: Banner Specification . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+General Properties . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Elastic Properties . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+HTTP(S) Properties . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Location Properties . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+SSH Properties . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+SSL Properties . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+ISAKMP Properties . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Special Properties . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Example . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+66
+66
+66
+67
+67
+68
+68
+68
+69
+69
+
+Appendix B: List of Search Filters . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+General Filters . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+HTTP Filters . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+NTP Filters . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+SSL Filters . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Telnet Filters . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+71
+71
+71
+72
+72
+72
+
+Appendix C: Search Facets . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+General Facets . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+HTTP Facets . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+NTP Facets . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+SSH Facets . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+SSL Facets . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Telnet Facets . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+74
+74
+74
+74
+75
+75
+75
+
+Appendix D: List of Ports . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+76
+
+Appendix E: Sample SSL Banner . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+82
+
+Exercise Solutions . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Website . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Command-Line Interface . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+Shodan API . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .
+
+85
+85
+85
+86
+
+Introduction
+Shodan is a search engine for Internet-connected devices. Web search engines, such as Google and
+Bing, are great for finding websites. But what if you’re interested in finding computers running a
+certain piece of software (such as Apache)? Or if you want to know which version of Microsoft IIS
+is the most popular? Or you want to see how many anonymous FTP servers there are? Maybe a new
+vulnerability came out and you want to see how many hosts it could infect? Traditional web search
+engines don’t let you answer those questions.
+
+All About the Data
+Banner
+The basic unit of data that Shodan gathers is the banner. The banner is textual information that
+describes a service on a device. For web servers this would be the headers that are returned or for
+Telnet it would be the login screen.
+The content of the banner varies greatly depending on the type of service. For example, here is a
+typical HTTP banner:
+HTTP/1.1 200 OK
+Server: nginx/1.1.19
+Date: Sat, 03 Oct 2015 06:09:24 GMT
+Content-Type: text/html; charset=utf-8
+Content-Length: 6466
+Connection: keep-alive
+
+The above banner shows that the device is running the nginx web server software with a version
+of 1.1.19. To show how different the banners can look like, here is a banner for the Siemens S7
+industrial control system protocol:
+
+Introduction
+
+2
+
+Copyright: Original Siemens Equipment
+PLC name: S7_Turbine
+Module type: CPU 313C
+A
+Unknown (129): Boot Loader
+Module: 6ES7 313-5BG04-0AB0 v.0.3
+Basic Firmware: v.3.3.8
+Module name: CPU 313C
+Serial number of module: S Q-D9U083642013
+Plant identification:
+Basic Hardware: 6ES7 313-5BG04-0AB0 v.0.3
+
+The Siemens S7 protocol returns a completely different banner, this time providing information
+about the firmware, its serial number and a lot of detailed data to describe the device.
+You have to decide what type of service you’re interested in when searching in Shodan because the
+banners vary greatly.
+Note: Shodan lets you search for banners - not hosts. This means that if a single IP
+exposes many services they would be represented as separate results.
+
+Device Metadata
+In addition to the banner, Shodan also grabs meta-data about the device such as its geographic
+location, hostname, operating system and more (see Appendix A). Most of the meta-data is
+searchable via the main Shodan website, however a few fields are only available to users of the
+developer API.
+
+IPv6
+As of October 2015, Shodan gathers millions of banners per month for devices accessible on IPv6.
+Those numbers still pale in comparison to the hundreds of millions of banners gathered for IPv4 but
+it is expected to grow over the coming years.
+
+Introduction
+
+3
+
+Data Collection
+Frequency
+The Shodan crawlers work 24/7 and update the database in real-time. At any moment you query
+the Shodan website you’re getting the latest picture of the Internet.
+
+Distributed
+Crawlers are present in countries around the world, including:
+• USA (East and West Coast)
+• China
+• Iceland
+• France
+• Taiwan
+• Vietnam
+• Romania
+• Czech Republic
+Data is collected from around the world to prevent geographic bias. For example, many system
+administrators in the USA block entire Chinese IP ranges. Distributing Shodan crawlers around the
+world ensures that any sort of country-wide blocking won’t affect data gathering.
+
+Randomized
+The basic algorithm for the crawlers is:
+1. Generate a random IPv4 address
+2. Generate a random port to test from the list of ports that Shodan understands
+3. Check the random IPv4 address on the random port and grab a banner
+4. Goto 1
+This means that the crawlers don’t scan incremental network ranges. The crawling is performed
+completely random to ensure a uniform coverage of the Internet and prevent bias in the data at any
+given time.
+
+Introduction
+
+4
+
+SSL In Depth
+SSL is becoming an evermore important aspect of serving and consuming content on the Internet, so
+it’s only fit that Shodan extends the information that it gathers for every SSL-capable service. The
+banners for SSL services, such as HTTPS, include not just the SSL certificate but also much more.
+All the collected SSL information discussed below is stored in the ssl property on the banner (see
+Appendix A and Appendix E).
+
+Vulnerability Testing
+Heartbleed
+If the service is vulnerable to Heartbleed then the banner contains 2 additional properties. opts.heartbleed
+contains the raw response from running the Heartbleed test against the service. Note that for the test
+the crawlers only grab a small overflow to confirm the service is affected by Heartbleed but it doesn’t
+grab enough data to leak private keys. The crawlers also added CVE-2014-0160 to the opts.vulns list
+if the device is vulnerable. However, if the device is not vulnerable then it adds “!CVE-2014-0160”.
+If an entry in opts.vulns is prefixed with a ! or - then the service is not vulnerable to the given
+CVE.
+{
+"opts": {
+"heartbleed": "... 174.142.92.126:8443 - VULNERABLE\n",
+"vulns": ["CVE-2014-0160"]
+}
+}
+
+Shodan also supports searching by the vulnerability information. For example, to search Shodan for
+devices in the USA that are affected by Heartbleed use:
+country:US vuln:CVE-2014-0160
+
+FREAK
+If the service supports EXPORT ciphers then the crawlers add the “CVE-2015-0204” item to the
+opts.vulns property:
+"opts": {
+"vulns": ["CVE-2015-0204"]
+}
+
+Logjam
+The crawlers try to connect to the SSL service using ephemeral Diffie-Hellman ciphers and if the
+connection succeeds the following information is stored:
+
+Introduction
+
+5
+
+"dhparams": {
+"prime": "bbbc2dcad84674907c43fcf580e9...",
+"public_key": "49858e1f32aefe4af39b28f51c...",
+"bits": 1024,
+"generator": 2,
+"fingerprint": "nginx/Hardcoded 1024-bit prime"
+}
+
+Version
+Normally, when a browser connects to an SSL service it will negotiate the SSL version and cipher
+that should be used with the server. They will then agree on a certain SSL version, such as TLSv1.2,
+and then use that for the communication.
+Shodan crawlers start out the SSL testing by doing a normal request as outlined above where they
+negotiate with the server. However, afterwards they also explicitly try connecting to the server using
+a specific SSL version. In other words, the crawlers attempt to connect to the server using SSLv2,
+SSLV3, TLSv1.0, TLSv1.1 and TLSv1.2 explicitly to determine all the versions that the SSL service
+supports. The gathered information is made available in the ssl.versions field:
+{
+"ssl": {
+"versions": ["TLSv1", "SSLv3", "-SSLv2", "-TLSv1.1", "-TLSv1.2"]
+}
+}
+
+If the version has a - (dash) in front of the version, then the device does not support that SSL version.
+If the version doesn’t begin with a -, then the service supports the given SSL version. For example,
+the above server supports:
+TLSv1
+SSLv3
+
+And it denies versions:
+SSLv2
+TLSv1.1
+TLSv1.2
+
+The version information can also be searched over the website/ API. For example, the following
+search query would return all SSL services (HTTPS, POP3 with SSL, etc.) that allow connections
+using SSLv2:
+
+Introduction
+
+6
+
+ssl.version:sslv2
+
+Follow the Chain
+The certificate chain is the list of SSL certificates from the root to the end-user. The banner for
+SSL services includes a ssl.chain property that includes all of the SSL certificates of the chain in
+PEM-serialized certificates.
+
+Introduction
+
+7
+
+Beyond the Basics
+For most services the crawlers attempt to analyze the main banner text and parse out any useful
+information. A few examples are the grabbing of collection names for MongoDB, taking screenshots
+from remote desktop services and storing a list of peers for Bitcoin. There are 2 advanced data
+analysis techniques Shodan uses that I’d like to highlight:
+
+Web Components
+The crawlers try to determine the web technologies that were used to create a website. For the
+http and https modules the headers and HTML are analyzed to breakdown the components of the
+website. The resulting information is stored in the http.components property. The property is a
+dictionary of technologies, where the key is the name of the technology (ex. jQuery) and the value
+is another dictionary with a property of categories. The categories property is a list of categories that
+are associated with the technology. For example:
+"http": {
+...
+"components": {
+"jQuery": {
+"categories": ["javascript-frameworks"]
+},
+"Drupal": {
+"categories": ["cms"]
+},
+"PHP": {
+"categories": ["programming-languages"]
+}
+},
+...
+},
+
+The http.components property indicates that the website is running the Drupal content management system, which itself uses jQuery and PHP. The Shodan REST API makes the information
+
+8
+
+Introduction
+
+searchable via the filter http.component and 2 facets (http.component and http.component_category). To get a full list of all the possible component/ category values please use the new facets.
+For example, to get a full list of all the possible categories use the following shodan command:
+$ shodan stats --facets http.component_category:1000 http
+Top 47 Results for Facet: http.component_category
+javascript-frameworks
+8,982,996
+web-frameworks
+1,708,503
+programming-languages
+1,409,763
+font-scripts
+1,280,397
+
+Cascading
+If a banner returns information about peers or otherwise has information about another IP address
+that runs a service then the crawlers try to perform a banner grab on that IP/ service. For example:
+the default port for the mainline DHT (used by Bittorrent) is 6881. The banner for such a DHT node
+looks as follows:
+DHT Nodes
+97.94.250.250
+150.77.37.22
+113.181.97.227
+252.246.184.180
+83.145.107.53
+77.232.167.126
+25.89.240.146
+147.23.120.228
+85.58.200.213
+180.214.174.82
+241.241.187.233
+166.219.60.135
+149.56.67.21
+107.55.196.179
+
+58431
+34149
+63579
+36408
+52158
+52716
+27179
+50074
+27422
+36937
+60339
+3297
+13735
+8748
+
+Previously, a crawler would grab the above banner and then move on. With cascading enabled for
+the DHT banner grabber the crawler now launches new banner grabbing requests for all of the peers.
+In the above example, the crawler would launch a scan for IP 54.70.96.157 on port 61770 using the
+dht banner grabber, IP 85.82.92.188 on port 42155 and so on. I.e. a single scan for an IP can cause a
+cascade of scans if the initial scan data contains information about other potential hosts.
+To keep track of the relationship between the initial scan request and any child/ cascading requests
+we’ve introduced 2 new properties:
+
+Introduction
+
+9
+
+• _shodan.id: A unique ID for the banner. This property is guaranteed to exist if a cascading
+request could get launched from the service, though it doesn’t necessarily mean that any
+cascading requests succeeded.
+• _shodan.options.referrer: Provides the unique ID of the banner that triggered the creation
+of the current banner. I.e. the referrer is the parent of the current banner.
+
+Web Interfaces
+The easiest way to access the data that Shodan gathers is through the web interfaces. Almost all of
+them let you enter a search query, so lets discuss that first:
+
+Search Query Explained
+By default, the search query only looks at the main banner text and doesn’t search the meta-data.
+For example, if you’re searching for “Google” then the results will only include results where the
+text “Google” was shown in the banner; it wouldn’t necessarily return results for Google’s network
+range.
+
+Shodan search for “Google”
+
+As seen above, a search for “Google” returns a lot of Google Search Appliances that organizations
+have purchased and connected to the Internet; it doesn’t return Google’s servers.
+Shodan will try to find results matching all search terms, which means that implicitly there is a +
+or AND between each search term. For example, the search queries “apache + 1.3” is equivalent to
+“apache 1.3”.
+To search the meta-data you need to use search filters.
+
+Web Interfaces
+
+11
+
+Introducing Filters
+Filters are special keywords that Shodan uses to let you narrow search results based on the meta-data
+of a service or device. The format for entering filters is:
+filtername:value
+
+Important: There is no space between the colon “:” and the value.
+To use a value that contains a space with a filter you have to wrap the value in double quotes. For
+example, to find all devices on the Internet that are located in San Diego you would search for:
+city:"San Diego"
+
+A few filters let you specify several values that are separated by a comma “,”. For example, to find
+devices that are running Telnet on ports 23 and 1023:
+port:23,1023
+
+If a filter doesn’t allow commas in its value (ex. port, hostname, net) then it lets you provide multiple
+values.
+Filters can also be used to exclude results by prepending a minus sign “-“ to the filter. For example,
+the following would return all devices that aren’t located in San Diego:
+-city:"San Diego"
+
+There are many situations where excluding is easier than including. For example, the following
+search query uses hash:0 to provide results for services on port 8080 where the main text banner
+isn’t empty:
+port:8080 -hash:0
+
+Every banner on Shodan has a numeric hash property calculated; for empty banners that value is
+zero. If you’re trying to find devices that have a short, static banner then the hash filter may provide
+a good way to accurately identify them.
+Shodan supports a lot of filters, a few popular ones are:
+
+12
+
+Web Interfaces
+
+Filter Name
+
+Description
+
+Example
+
+category
+city
+country
+net
+
+Available categories: ics, malware
+Name of the city
+Full country name
+Only show results inside the provided IP
+range in CIDR format
+Narrow results based on the organization
+that owns the IP
+
+net:190.30.40.0/24
+
+org
+
+org:”Verizon Wireless”
+
+See Appendix B for a full list of search filters that are available.
+
+Shodan Search Engine
+The main interface for accessing the data gathered by Shodan is via its search engine located at
+https://www.shodan.io
+
+By default, the search query will look at the data collected within the past 30 days. This is a change
+from the old website at shodanhq.com, which searched the entire Shodan database by default. This
+means that the results you get from the website are recent and provide an accurate view of the
+Internet at the moment.
+In addition to searching, the website also provides the following functionality:
+
+Web Interfaces
+
+13
+
+Download Data
+After completing a search there will be a button at the top called Download Data. Clicking on that
+button will provide you with the option of downloading the search results in JSON, CSV or XML
+formats.
+
+The JSON format generates a file where each line contains the full banner and all accompanying
+meta-data that Shodan gathers. This is the preferred format as it saves all available information.
+And the format is compatible with the Shodan command-line client, meaning you can download
+data from the Shodan website then process it further using the terminal.
+The CSV format returns a file containing the IP, port, banner, organization and hostnames for the
+banner. It doesn’t contain all the information that Shodan gathers due to limitations in the CSV file
+format. Use this if you only care about the basic information of the results and want to quickly load
+it into external tools such as Excel.
+The XML format is the old, deprecated way of saving search results. It is harder to work with than
+JSON and consumes more space, thereby making it suboptimal for most situations.
+Downloading data consumes export credits, which are one-time use and purchased on the website.
+They aren’t associated in any way with the Shodan API and they don’t automatically renew every
+month. 1 export credit can be used to download up to 10,000 results.
+Data files generated by the website can be retrieved in the Downloads section of the website, which
+
+14
+
+Web Interfaces
+
+you can visit by clicking on the
+
+button in the upper right corner.
+
+Generate Report
+The website lets you generate a report based off of a search query. The report contains graphs/ charts
+providing you a big picture view of how the results are distributed across the Internet. This feature
+is free and available to anyone.
+
+When you generate a report you are asking Shodan to take a snapshot of the search results
+and provide an aggregate overview. Once the report has been generated, it doesn’t change or
+automatically update as new data is being collected by Shodan. This also means that you can
+generate a report once a month and keep track of changes over time by comparing it to reports
+of previous months. By clicking on the
+of previously generated reports.
+
+button in the top right corner you can get a listing
+
+Web Interfaces
+
+15
+
+Shared Search Queries
+Finding specific devices requires knowledge about the software they run and how they respond to
+banner grabs over the Internet. Fortunately, it is possible to leverage the shared knowledge of the
+community using the search directory on Shodan. People are able to readily describe, tag and share
+their search queries for others to use. If you’re interested in getting started with Shodan, the shared
+searches should be your first stop.
+
+Warning: Shared search queries are publicly viewable. Do not share queries that are
+sensitive or you don’t want others to know about.
+
+Example: Finding Non-Default Services
+A common reaction I get when talking about devices exposed on the Internet is something like the
+following:
+
+Web Interfaces
+
+16
+
+Specifically, the idea that running the service (in this case Minecraft) on a non-standard port is a
+good way to stay hidden. In security circles this is also known as the concept of security by obscurity,
+and it’s considered a largely ineffective, deprecated idea. What’s worse is that it might give you the
+owner of the server/ device a false sense of security. For example, lets take a look at people running
+OpenSSH on a non-standard port. To do this we will use the following search query:
+product:openssh -port:22
+
+The product filter is used to only show OpenSSH servers while -port:22 tells Shodan to exclude all
+results that were collected from the standard SSH port (22). To get a better overview of the search
+results lets generate a report:
+
+The report also gives us a breakdown of the most common non-standard ports:
+1. 2222: 323,930
+2. 5000: 47,439
+3. 23: 13,482
+4. 26: 7,569
+5. 5555: 6,856
+6. 9999: 6,286
+7. 82: 6,046
+8. 2323: 3,622
+9. 6666: 2,735
+10. 3333: 2,644
+These numbers don’t look that random to me… Right away you should realize that your random
+choice of non-standard port might not be so unique. Port 2222 is popular the same way that HTTP
+on port 8080 is popular, and it’s also the default port for the Kippo honeypot though I doubt that
+many people are running honeypots. The next most popular port is 5000, which didn’t follow the
+
+Web Interfaces
+
+17
+
+same pattern as the other ports to me (repeating/ symmetric numbers). And it was around the same
+time that I realized that Australia was the 2nd most popular country to run OpenSSH on a nonstandard port. I decided to take a closer look at Australia, and it turns out that there are nearly the
+same amount of servers running OpenSSH on port 5000 as they are on the default port 22. About
+68,000 devices are running on the default port, and 54,000 on port 5000. Looking at a few banners
+we can determine that this is the SSH fingerprint that they all share:
+5b:a2:5a:9a:91:28:60:9c:92:2b:9e:bb:7f:7c:2e:06
+
+It appears that the Australian ISP BigPond installs/ configures networking gear that not only runs
+OpenSSH on port 5000 (most likely for remote management) but also has the same SSH keys installed
+on all of them. The devices also happen to run an old version of OpenSSH that was released on
+September 4th 2007. There’s no guarantee that running OpenSSH on the default port would’ve made
+them more security conscious, but their installation of ∼54,000 devices is 25% of the total number of
+OpenSSH servers on the Internet running version 4.7 (sidenote: the most popular version of OpenSSH
+is 5.3).
+
+Web Interfaces
+
+18
+
+Shodan Maps
+Shodan Maps¹ provides a way to explore search results visually instead of the text-based main
+website. It displays up to 1,000 results at a time and as you zoom in/ out Maps adjusts the search
+query to only show results for the area you’re looking at.
+All search filters that work for the main Shodan website also work on Maps.
+
+Map Styles
+
+There are a variety of map styles available to present the data to your preference. Click on the
+gear button next to the search button for a list of options.
+Satellite
+
+¹https://maps.shodan.io
+
+Web Interfaces
+
+Satellite without Labels
+
+19
+
+Web Interfaces
+
+Streets (Light)
+
+20
+
+Web Interfaces
+
+Streets (Dark)
+
+21
+
+Web Interfaces
+
+Streets (Green)
+
+22
+
+Web Interfaces
+
+Streets (Red)
+
+23
+
+Web Interfaces
+
+Pirate
+
+24
+
+25
+
+Web Interfaces
+
+Shodan Exploits
+Shodan Exploits² collects vulnerabilities and exploits from CVE, Exploit DB and Metasploit to make
+it searchable via web interface.
+
+The search filters available for Exploits are different than the rest of Shodan, though an attempt was
+made to keep them similar when possible.
+Important: By default, Exploits will search the entire content of the available exploit
+information including meta-data. This is unlike Shodan, which only searches the banner
+text if no other filters are specified.
+The following search filters are available:
+Name
+
+Description
+
+author
+description
+platform
+type
+
+Author of the vulnerability/ exploit
+Description
+Platform that it targets (ex: php, windows, linux)
+Exploit type (ex: remote, dos)
+
+²https://exploits.shodan.io
+
+Web Interfaces
+
+26
+
+Shodan Images
+For a quick way to browse all the screenshots that Shodan collects check out Shodan Images³. It is
+a user-friendly interface around the has_screenshot filter.
+
+The search box at the top uses the same syntax as the main Shodan search engine. It is most useful
+to use the search box to filter by organization or netblock. However, it can also be used to filter the
+types of images that are shown.
+Image data is gathered from 5 different sources:
+• VNC
+• Remote Desktop (RDP)
+• RTSP
+• Webcams
+• X Windows
+Each image source comes from a different port/ service and therefor has a different banner. This
+means that if you only want to see images from webcams you could search for⁴:
+³https://images.shodan.io
+⁴https://images.shodan.io/?query=http
+
+Web Interfaces
+
+27
+
+HTTP
+
+To search for VNC you can search using RFB and for RTSP you simply search with RTSP.
+The images can also be found using the main Shodan website or Shodan Maps by using the search
+query has_screenshot:true.
+
+Web Interfaces
+
+Exercises: Website
+Exercise 1
+
+Find the 4SICS website using Shodan.
+Tip: Check out Appendix B for a list of search filters.
+Exercise 2
+
+How many VNC services on the Internet allow anonymous access?
+Exercise 3
+
+How many IPs in Sweden are vulnerable to Heartbleed and still support SSLv3?
+How many IPs are vulnerable to Heartbleed at your organization?
+Exercise 4
+
+Find all the industrial control systems in your town.
+Exercise 5
+
+Which RAT is most popular in the USA?
+
+28
+
+External Tools
+Shodan Command-Line Interface
+Getting Started
+The shodan command-line interface is packaged with the official Python library for Shodan, which
+means if you’re running the latest version of the library you already have access to the CLI. To install
+the new tool simply execute:
+easy_install shodan
+
+Once the tool is installed it has to be initialized with your API key:
+shodan init YOUR_API_KEY
+
+Visit https://account.shodan.io to retrieve the API key for your account.
+
+alert
+The alert command provides you the ability to create, list, clear and remove network alerts.
+
+convert
+Convert the compressed JSON file generated by Shodan into a different file format. At the moment
+it supports output to kml and csv.
+
+count
+Returns the number of results for a search query.
+$ shodan count microsoft iis 6.0
+5360594
+
+External Tools
+
+30
+
+download
+Search Shodan and download the results into a file where each line is a JSON banner (see Appendix
+A).
+By default it will only download 1,000 results, if you want to download more look at the --limit
+flag.
+The download command is what you should be using most often when getting results from Shodan
+since it lets you save the results and process them afterwards using the parse command. Because
+paging through results uses query credits, it makes sense to always store searches that you’re doing
+so you won’t need to use query credits for a search you already did in the past.
+
+host
+See information about the host such as where it’s located, what ports are open and which
+organization owns the IP.
+$ shodan host 189.201.128.250
+
+External Tools
+
+31
+
+honeyscore
+Check whether an IP address is a honeypot pretending to be an industrial control system.
+$ shodan honeyscore 41.231.95.212
+
+info
+Obtain general information about your API plan, including how many query and scan credits you
+have remaining this month.
+$ shodan info
+Query credits available: 5102
+Scan credits available: 249
+
+myip
+Returns your Internet-facing IP address.
+$ shodan myip
+199.30.49.210
+
+External Tools
+
+32
+
+parse
+Use parse to analyze a file that was generated using the download command. It lets you filter out
+the fields that you’re interested in, convert the JSON to a CSV and is friendly for pipe-ing to other
+scripts.
+The following command outputs the IP address, port and organization in CSV format for the
+previously downloaded Microsoft-IIS data:
+$ shodan parse --fields ip_str,port,org --separator , microsoft-data.json.gz
+
+scan
+The scan command provides a few sub-commands but the most important one is submit which lets
+you perform network scans using Shodan.
+$ shodan scan submit 202.69.165.20
+
+External Tools
+
+33
+
+search
+This command lets you search Shodan and view the results in a terminal-friendly way. By default it
+will display the IP, port, hostnames and data. You can use the –fields parameter to print whichever
+banner fields you’re interested in.
+For example, to search Microsoft IIS 6.0 and print out their IP, port, organization and hostnames use
+the following command:
+$ shodan search --fields ip_str,port,org,hostnames microsoft iis 6.0
+
+External Tools
+
+34
+
+stats
+The stats command lets you print the facets for a search query.
+For example, the following command shows the most popular countries where Apache web servers
+are located in:
+$ shodan stats --facets country apache
+Top 10 Results for Facet: country
+US
+8,336,729
+DE
+4,512,172
+CN
+1,470,434
+JP
+1,093,699
+GB
+832,221
+NL
+684,432
+FR
+667,871
+CA
+501,630
+RU
+324,698
+BR
+266,788
+
+External Tools
+
+35
+
+stream
+The stream command provides access to the real-time stream of data that the Shodan crawlers
+collect.
+
+The command supports many different flags, however there are 2 that are important to mention:
+–datadir
+The –datadir flag lets you specify a directory in which the streamed data should be stored. The files
+generated in the –datadir directory have the following naming convention:
+YYYY-MM-DD.json.gz
+
+A sample file name would be “2016-01-15.json.gz”. Each day a new file is automatically generated as
+long as you keep the stream running. For example, the following command downloads all the data
+from the real-time stream and saves it in a directory called /var/lib/shodan/:
+shodan stream --datadir /var/lib/shodan/
+
+–limit
+The –limit flag specifies how many results that should be downloaded. By default, the stream
+command runs forever until you exit the tool. However, if you’re only interested in collecting a
+sample of data then the –limit flag ensures you gather a small amount of records. For example:
+
+External Tools
+
+36
+
+shodan stream --limit 100
+
+The above command would connect to the Shodan real-time stream, print out the first 100 records
+that are received and then exit.
+–ports
+The –ports flag accepts a comma-separated list of ports to let you stream only records gathered
+from those ports. The following command prints out a stream of banners that were collected from
+services running on port 80 or 8080:
+shodan stream --ports 80,8080
+
+Example: Telnet Research
+Lets assume we want to perform research into devices on the Internet running Telnet. As a starting
+point we can combine all of the aforementioned commands into the following:
+mkdir telnet-data
+shodan stream --ports 23,1023,2323 --datadir telnet-data/ --limit 10000
+
+First, we create a directory called telnet-data to store the Telnet data. Then we request 10,000 records
+(–limit 10000) from the stream on common Telnet ports (–ports 23,1023,2323) and store the results
+in the previously created directory (–datadir telnet-data/).
+
+External Tools
+
+37
+
+Maltego Add-On
+Maltego is an open source intelligence and forensics application; it lets you visually explore and
+correlate data from a variety of sources.
+
+The Shodan add-on for Maltego provides 2 new entities (Service and Exploit) and 5 transforms:
+• searchShodan
+• searchShodanByDomain
+• searchShodanByNetblock
+• toShodanHost
+• searchExploits
+
+Browser Plug-Ins
+There are plugins available for both Chrome⁵ and Firefox⁶ that let you see what services a website
+exposes.
+⁵https://chrome.google.com/webstore/detail/shodan/jjalcfnidlmpjhdfepjhjbhnhkbgleap
+⁶https://addons.mozilla.org/en-us/firefox/addon/shodan-firefox-addon/
+
+External Tools
+
+38
+
+Exercises: Command-Line Interface
+Exercise 1
+
+Download the IPs vulnerable to Heartbleed in Sweden and Norway using the Shodan CLI.
+Filter out the results for Sweden and store them in a separate file.
+Note: Uncompress the file and look at the raw data to see the raw response from the
+Heartbleed test.
+Exercise 2
+
+Download 1,000 recent banners using the real-time stream and then map them using Google Maps.
+Tip: shodan convert
+Exercise 3
+
+Write a script to download a list of known malware IPs and block any outgoing traffic to them.
+Tip: iptables -A OUTPUT -d x.x.x.x -j DROP
+
+Developer API
+Shodan provides a developer API (https://developer.shdan.io/api) for programmatic access to the
+information that is collected. All of the websites and tools, including the main Shodan website, are
+powered by the API. Everything that can be done via the website can be accomplished from your
+own code.
+The API is divided into 2 parts: REST API and Streaming API. The REST API provides methods to
+search Shodan, look up hosts, get summary information on queries and a variety of utility methods to
+make developing easier. The Streaming API provides a raw, real-time feed of the data that Shodan is
+currently collecting. There are several feeds that can be subscribed to, but the data can’t be searched
+or otherwise interacted with; it’s a live feed of data meant for large-scale consumption of Shodan’s
+information.
+Note: Only users with an API subscription are able to access the Streaming API.
+
+Usage Limits
+There are 3 methods of the API that get limited depending on your API plan:
+1. Searching To limit the number of searches that can be performed per month Shodan uses
+query credits. 1 query credits is used when you perform a search containing filters or go
+past the 1st page. For example, if you search for “apache” that doesn’t use any query credits.
+If you search for “apache country:US” that would use 1 query credit. Likewise, if you searched
+for the 2nd page of results for “apache” that would use 1 query credit. Finally, a search query
+for the 2nd page of “apache country:US” would also use up 1 query credit.
+2. Scanning The on-demand scanning API uses scan credits to limit the number of hosts that
+you can request Shodan to scan every month. For every host that you request a scan of Shodan
+deducts 1 scan credit.
+3. Network Alerts The number of IPs that can be monitored using alerts is limited based on
+your API subscription. Only paid customers have access to this feature. And you can’t create
+more than 100 alerts on your account.
+Important: Query and scan credits get reset at the start of every month.
+
+Developer API
+
+40
+
+Introducing Facets
+Facets provide aggregate information about a specific field of the banner you’re interested in. Filters
+let you narrow down search results while facets let you get a big picture view of the results. For
+example, the main Shodan website uses facets to provide the statistics information on the left side
+of the search results:
+
+A long list of facets are available (see Appendix C) and using the API you are in control of which
+facets you care about. For example, searching for port:22 and faceting on the ssh.fingerprint
+facet will give you a breakdown of which SSH fingerprints are most commonly seen on the Internet.
+Facets are often the starting point for research into Internet-wide issues such as duplicate SSH keys,
+negligent hosting providers or country-wide security holes.
+At the moment, facets are only available from the API and the Shodan command-line interface.
+
+Developer API
+
+41
+
+Getting Started
+All the examples will be provided in Python and assume you have access to the command-line,
+though there are Shodan libraries/ clients available in other languages⁷ as well.
+To install the Shodan library for Python run the following command:
+easy_install shodan
+
+If you already have it installed and want to upgrade to the latest version:
+easy_install -U shodan
+
+Initialization
+The first thing that always has to be done is initializing the Shodan API object:
+import shodan
+api = shodan.Shodan('YOUR API KEY')
+
+Where YOUR API KEY is the API key for you account which you can obtain from:
+https://account.shodan.io
+
+Search
+Now that we have our API object all good to go, we’re ready to perform a search:
+# Wrap the request in a try/ except block to catch errors
+try:
+# Search Shodan
+results = api.search('apache')
+# Show the results
+print 'Results found: %s' % results['total']
+for result in results['matches']:
+print 'IP: %s' % result['ip_str']
+print result['data']
+print ''
+except shodan.APIError, e:
+print 'Error: %s' % e
+⁷https://developer.shodan.io/api/clients
+
+Developer API
+
+42
+
+Stepping through the code, we first call the Shodan.search() method on the api object which returns
+a dictionary of result information. We then print how many results were found in total, and finally
+loop through the returned matches and print their IP and banner. Each page of search results contains
+up to 100 results.
+There’s a lot more information that gets returned by the function. See below for a shortened example
+dictionary that Shodan.search returns:
+{
+
+'total': 8669969,
+'matches': [
+{
+'data': 'HTTP/1.0 200 OK\r\nDate: Mon, 08 Nov 2010 05:09:59 GMT\r\nSer...'
+'hostnames': ['pl4t1n.de'],
+'ip': 3579573318,
+'ip_str': '89.110.147.239',
+'os': 'FreeBSD 4.4',
+'port': 80,
+'timestamp': '2014-01-15T05:49:56.283713'
+},
+...
+]
+}
+
+See Appendix A for a complete list of properties that the banner may contain.
+Important: By default, a few of the large fields in the banner such as “html” get truncated to
+reduce bandwidth usage. If you want to retrieve all the information simply disable minification
+using minify=False. For example, the following search query for anonymous VNC services would
+ensure all information is returned:
+results = api.search('has_screenshot:true', minify=False)
+
+It’s also good practice to wrap all API requests in a try/ except clause, since any error will raise an
+exception. But for simplicity’s sake, I will leave that part out from now on.
+The above script only outputs the results from the 1st page of results. To get the 2nd page of results
+or more simply use the page parameter when doing the search request:
+results = api.search('apache', page=2)
+
+Or if you want to simply loop over all possible results there’s a method to make your life easier
+called search_cursor()
+
+Developer API
+
+43
+
+for banner in api.search_cursor('apache'):
+print banner['ip_str'] # Print out the IP address for each banner
+
+Important: The search_cursor() method only returns the banners and doesn’t let you
+use facets. Only use it to loop over results.
+
+Host Lookup
+To see what Shodan has available on a specific IP we can use the Shodan.host() function:
+# Lookup the host
+host = api.host('217.140.75.46')
+# Print general info
+print """
+IP: %s
+Organization: %s
+Operating System: %s
+""" % (host['ip_str'], host.get('org', 'n/a'), host.get('os', 'n/a'))
+# Print all banners
+for item in host['data']:
+print """
+Port: %s
+Banner: %s
+""" % (item['port'], item['data'])
+
+By default, Shodan only returns information on the host that was recently collected. If you would
+like to get a full history of an IP address, include the history parameter. For example:
+host = api.host('217.140.75.46', history=True)
+
+The above would return all banners, including for services that may no longer be active on the host.
+
+Scanning
+Shodan crawls the Internet at least once a month, but if you want to request Shodan to scan a
+network immediately you can do so using the on-demand scanning capabilities of the API.
+
+Developer API
+
+44
+
+Unlike scanning via a tool such as Nmap, the scanning with Shodan is done asynchronously. This
+means that after you submit a request to Shodan you don’t get back the results immediately. It is
+up to the developer to decide how the results of the scan should be gathered: by looking up the IP
+information, searching Shodan or subscribing to the real-time stream. The Shodan command-line
+interface creates a temporary network alert after a scan was initiated and then waits for results to
+come through the real-time stream.
+scan = api.scan('198.20.69.0/24')
+
+It’s also possible to submit a list of networks at once by providing a list of addresses in CIDR notation:
+scan = api.scan(['198.20.49.30', '198.20.74.0/24'])
+
+After submitting a scan request the API will return the following information:
+{
+'id': 'R2XRT5HH6X67PFAB',
+'count': 1,
+'credits_left': 5119
+}
+
+The object provides a unique id that you can use for tracking purposes, the total count of IPs that
+were submitted for scanning and finally how many scan credits are left (credits_left).
+
+Real-Time Stream
+The Streaming API is an HTTP-based service that returns a real-time stream of data collected by
+Shodan. It doesn’t provide any search or lookup capabilities, it is simply a feed of everything that is
+gathered by the crawlers.
+For example, here is a script that outputs a stream of banners from devices that are vulnerable to
+FREAK (CVE-2015-0204):
+
+Developer API
+
+45
+
+def has_vuln(banner, vuln):
+if 'vulns' in banner['opts'] and vuln in banner['opts']['vulns']:
+return True
+return False
+for banner in api.stream.banners():
+if has_vuln(banner, 'CVE-2015-0204'):
+print banner
+
+To save space and bandwidth many properties in the banner are optional. To make working with
+optional properties easier it is best to wrap access to properties in a function. In the above example,
+the has_vuln() method checks whether the service is vulnerable for the provided CVE.
+Note: Regular API subscriptions only have access to 1% of the feed. 100% access is
+available to data license customers only.
+
+Network Alert
+A network alert is a real-time feed of data that is being collected by Shodan for a network range. To
+get started with network alerts requires 2 steps:
+
+Creating a Network Alert
+To create a network alert you need to provide a name and a network range. The name should be
+descriptive to let you know what the alert is monitoring or why it was created.
+alert = api.create_alert('Production network', '198.20.69.0/24')
+
+As with the scan() method you can also provide a list of network ranges to monitor:
+alert = api.create_alert('Production and Staging network', [
+'198.20.69.0/24',
+'198.20.70.0/24',
+])
+
+Note: Only a limited number of IPs can be monitored using network alerts and an
+account can’t have more than 100 alerts active.
+A useful trick when combining network alerts with the scanning API is to set an expiration for the
+alert:
+
+46
+
+Developer API
+
+alert = api.create_alert('Temporary alert', '198.20.69.0/24', expires=60)
+
+The above alert would be active for 60 seconds and then expire, at which point the alert can’t be
+used any more.
+Upon successfully creating an alert, the API will return the following object:
+{
+"name": "Production network",
+"created": "2015-10-17T08:13:58.924581",
+"expires": 0,
+"expiration": null,
+"filters": {
+"ip": ["198.20.69.0/24"]
+},
+"id": "EPGWQG5GEELV4799",
+"size": 256
+}
+
+Subscribing
+Once an alert has been created it is ready to be used as a real-time stream of data for that network.
+for banner in api.stream.alert(alert['id']):
+print banner
+
+As with the regular, real-time stream the alert() method provides an iterator where each item is a
+banner as it’s being collected by the Shodan crawlers. The only argument that the alert() method
+requires is the alert ID that was returned when creating the network alert.
+
+Using the Shodan Command-Line Interface
+We will quickly examine how the above Python code could be implemented using the Shodan CLI⁸
+instead. Let’s start off by clearing out any existing alerts:
+
+Warning
+The clear command removes all alerts that have been created on your account.
+
+⁸https://cli.shodan.io
+
+Developer API
+
+47
+
+$ shodan alert clear
+Removing Scan: 198.20.69.0/24 (ZFPSZCYUKVZLUT4F)
+Alerts deleted
+
+And confirm that there aren’t any existing alerts anymore:
+$ shodan alert list
+You haven't created any alerts yet.
+
+Now it’s time to create a new network alert:
+$ shodan alert create "Temporary alert" 198.20.69.0/24
+Successfully created network alert!
+Alert ID: ODMD34NFPLJBRSTC
+
+The final step is to subscribe to the network alert and store the data it returns. To stream results for
+the created alert we give the alert ID ODMD34NFPLJBRSTC to the stream command:
+$ mkdir alert-data
+$ shodan stream --alert=ODMD34NFPLJBRSTC --datadir=alert-data
+
+In the above command we are streaming results for the –alert with the ID of ODMD34NFPLJBRSTC
+and the results will be stored in a directory called alert-data. Every day a new file will be generated
+in the alert-data directory which contains the banners gathered for the day. I.e. we don’t need to
+take care of rotating files, the stream command will take care of that for us so after a few days the
+directory will look like:
+$ ls alert-data
+2016-06-05.json.gz
+2016-06-06.json.gz
+2016-06-07.json.gz
+
+Developer API
+
+48
+
+Example: Public MongoDB Data
+MongoDB⁹ is a popular NoSQL¹⁰ database and for a long time it didn’t come with any authentication.
+This has resulted in many instances of MongoDB being publicly accessible on the Internet. Shodan
+grabs a banner for these databases that contains a lot of information about the data stored. Following
+is an excerpt from the banner:
+MongoDB Server Information
+...
+{
+"ok": 1.0,
+"tokumxAuditVersion": "unknown",
+"bits": 64,
+"tokukvVersion": "unknown",
+"tokumxVersion": "2.0.2",
+"javascriptEngine": "V8",
+"version": "2.4.10",
+"versionArray": [
+2,
+4,
+10,
+0
+],
+"debug": false,
+"compilerFlags": "-fPIC -fno-strict-aliasing -ggdb -Wall -Wsign-compare -Wno\
+-unknown-pragmas -Winvalid-pch -pipe -Wnon-virtual-dtor -Woverloaded-virtual -Wn\
+o-unused-local-typedefs -fno-builtin-memcmp -O3",
+"maxBsonObjectSize": 16777216,
+"sysInfo": "Linux vps-vivid-x64-04 2.6.32-042stab106.6 #1 SMP Mon Apr 20 14:\
+48:47 MSK 2015 x86_64 x86_64 x86_64 GNU/Linux BOOST_LIB_VERSION=1_55",
+"loaderFlags": "
+",
+"gitVersion": "unknown"
+},
+...
+
+Basically, the banner is made up of a header that says “MongoDB Server Information” followed by 3
+JSON objects that are separated by commas. Each JSON object contains different information about
+the database and I recommend you check out a full banner on Shodan (it’s very long) by searching
+for:
+⁹https://www.mongodb.com
+¹⁰https://en.wikipedia.org/wiki/NoSQL
+
+Developer API
+
+49
+
+product:MongoDB
+
+Let’s use the banner information to determine which database names are most popular and how
+much data is publicly exposed on the Internet! The basic workflow will be to:
+1. Download all MongoDB banners
+2. Process the downloaded file and output a list of top 10 database names as well as the total
+data size
+Downloading the data is simple using the Shodan command-line interface¹¹:
+shodan download --limit -1 mongodb-servers.json.gz product:mongodb
+
+The above command says to download all results (–limit -1) into a file called mongodb-servers.json.gz
+for the search query product:mongodb. You can also download the results of the command from
+the Extras section of the book on Leanpub. Now we just need a simple Python script to process the
+Shodan data file. To easily iterate over the file we’re going to use the shodan.helpers.iterate_files()
+method:
+import shodan.helpers as helpers
+import sys
+# The datafile is the 1st argument to the command
+datafile = sys.argv[1]
+for banner in helpers.iterate_files(datafile):
+# Now we have the banner
+
+Since each banner is just JSON with some added header, lets process the banner into a native Python
+dictionary using the simplejson library:
+# Strip out the MongoDB header added by Shodan
+data = banner['data'].replace('MongoDB Server Information\n', '').split('\n},\n'\
+)[2]
+# Load the database information
+data = simplejson.loads(data + '}')
+
+The only thing that’s left is keeping track of the total amount of data that’s exposed and the most
+popular database names:
+¹¹https://cli.shodan.io
+
+Developer API
+
+50
+
+total_data = 0
+databases = collections.defaultdict(int)
+...
+# Then in the loop
+# Keep track of how much data is publicly accessible
+total_data += data['totalSize']
+# Keep track of which database names are most common
+for db in data['databases']:
+databases[db['name']] += 1
+
+Python has a useful collections.defaultdict class that automatically creates a default value for a
+dictionary key if the key doesn’t yet exist. And we just access the totalSize and databases property
+of the MongoDB banner to gather the information we care about. Finally, we just need to output the
+actual results:
+print('Total: {}'.format(humanize_bytes(total_data)))
+counter = 1
+for name, count in sorted(databases.iteritems(), key=operator.itemgetter(1), rev\
+erse=True)[:10]:
+print('#{}\t{}: {}'.format(counter, name, count))
+counter += 1
+
+First, we print the total amount of data that’s exposed and we’re using a simple humanize_bytes()
+method to convert bytes into human-readable format of GB/ MB/ etc. Second, we loop sort the
+databases collection in reverse order by the number of times that a certain database name was
+seen (key=operator.itemgetter(1)) and get the top 10 results ([:10]).
+Below is the full script that reads a Shodan data file and analyzes the banner:
+import collections
+import operator
+import shodan.helpers as helpers
+import sys
+import simplejson
+def humanize_bytes(bytes, precision=1):
+"""Return a humanized string representation of a number of bytes.
+
+Developer API
+
+Assumes `from __future__ import division`.
+>>> humanize_bytes(1)
+'1 byte'
+>>> humanize_bytes(1024)
+'1.0 kB'
+>>> humanize_bytes(1024*123)
+'123.0 kB'
+>>> humanize_bytes(1024*12342)
+'12.1 MB'
+>>> humanize_bytes(1024*12342,2)
+'12.05 MB'
+>>> humanize_bytes(1024*1234,2)
+'1.21 MB'
+>>> humanize_bytes(1024*1234*1111,2)
+'1.31 GB'
+>>> humanize_bytes(1024*1234*1111,1)
+'1.3 GB'
+"""
+abbrevs = (
+(1<<50L, 'PB'),
+(1<<40L, 'TB'),
+(1<<30L, 'GB'),
+(1<<20L, 'MB'),
+(1<<10L, 'kB'),
+(1, 'bytes')
+)
+if bytes == 1:
+return '1 byte'
+for factor, suffix in abbrevs:
+if bytes >= factor:
+break
+return '%.*f %s' % (precision, bytes / factor, suffix)
+total_data = 0
+databases = collections.defaultdict(int)
+for banner in helpers.iterate_files(sys.argv[1]):
+try:
+# Strip out the MongoDB header added by Shodan
+data = banner['data'].replace('MongoDB Server Information\n', '').split(\
+'\n},\n')[2]
+
+51
+
+Developer API
+
+# Load the database information
+data = simplejson.loads(data + '}')
+# Keep track of how much data is publicly accessible
+total_data += data['totalSize']
+# Keep track of which database names are most common
+for db in data['databases']:
+databases[db['name']] += 1
+except Exception, e:
+pass
+print('Total: {}'.format(humanize_bytes(total_data)))
+counter = 1
+for name, count in sorted(databases.iteritems(), key=operator.itemgetter(1), rev\
+erse=True)[:10]:
+print('#{}\t{}: {}'.format(counter, name, count))
+counter += 1
+
+Here’s a sample output of the script:
+Total: 1.8 PB
+#1
+local: 85845
+#2
+admin: 67648
+#3
+test: 24983
+#4
+s: 5121
+#5
+config: 4329
+#6
+proxy: 2045
+#7
+research: 2007
+#8
+seolib_new: 2001
+#9
+traditional: 1998
+#10
+simplified: 1998
+
+52
+
+Developer API
+
+Exercises: Shodan API
+Exercise 1
+
+Write a script to monitor a network using Shodan and send out notifications.
+Exercise 2
+
+Write a script to output the latest images into a directory.
+Tip: Images are encoded using base64. Python can easily decode it into binary using:
+image_string.decode(‘base64’)
+
+53
+
+Industrial Control Systems
+In a nutshell, industrial control systems (ICS) are computers that control the world around you.
+They’re responsible for managing the air conditioning in your office, the turbines at a power plant,
+the lighting at the theatre or the robots at a factory.
+Research conducted from 2012 through 2014 by Project SHINE¹² (SHodan INtelligence Extraction)
+indicates there are at least 2 million publicly accessible devices related to ICS on the Internet. The first
+dataset containing 500,000 ICS devices was sent in 2012 to the ICS-CERT. The ICS-CERT determined
+that roughly 7,200 out of the 500,000 were critical infrastructure¹³ in the United States. And with the
+demand for increased connectivity in everything that number is expected to rise. There have been
+efforts to secure these devices by taking them offline or patching flaws, but it’s a challenging problem
+and there isn’t an easy solution.
+
+Common Abbreviations
+Before getting into the protocols and how to find ICS devices, here are a few common abbreviations
+that are useful to know:
+BMS
+DCS
+HMI
+ICS
+PLC
+RTU
+SCADA
+VNC
+
+Building Management System
+Distributed Control System
+Human Machine Interface
+Industrial Control System
+Programmable Logic Controller
+Remote Terminal Unit
+Supervisory Control and Data Acquisition (a subset of ICS)
+Virtual Network Computing
+
+Protocols
+There are 2 different ways of identifying control systems on the Internet:
+Non-ICS protocols used in an ICS environment
+The majority of the ICS findings on Shodan are discovered by searching for web servers or other
+popular protocols that aren’t directly linked to ICS but may be seen on an ICS network. For example:
+¹²http://www.slideshare.net/BobRadvanovsky/project-shine-findings-report-dated-1oct2014
+¹³https://ics-cert.us-cert.gov/sites/default/files/Monitors/ICS-CERT_Monitor_Oct-Dec2012.pdf
+
+Industrial Control Systems
+
+55
+
+a web server running on an HMI or a Windows computer running unauthenticated remote desktop
+while connected to an ICS. These protocols provide you with a visual view of the ICS but they
+usually have some form of authentication enabled.
+
+The above is an HMI for an engine exposed via an unauthenticated VNC connection found on
+Shodan Images¹⁴.
+ICS protocols
+These are the raw protocols that are used by the control systems. Every ICS protocol has its own
+unique banner but there’s one thing they all have in common: they don’t require any authentication.
+This means that if you have remote access to an industrial device you automatically have the ability
+to arbitrarily read and write to it. However, the raw ICS protocols tend to be proprietary and hard
+to develop with. This means that it’s easy to check whether a device supports an ICS protocol using
+Shodan but hard to actually interact with the control system.
+¹⁴https://images.shodan.io
+
+Industrial Control Systems
+
+56
+
+The following banner describes a Siemens S7 PLC, note that it contains a lot of detailed information
+about the device including its serial number and location:
+
+Securing Internet-Connected ICS
+The majority of ICS banners don’t contain information on where the device is located or who owns
+the control system. This makes it exceedingly difficult to secure the device and is one of the main
+reasons that they continue to stay online after years of research into their online exposure.
+If you discover a control system that looks critical, belongs to a government or otherwise shouldn’t
+be online please notify the ICS-CERT¹⁵
+
+Use Cases
+Assessing ICS for the USA
+You’ve been tasked with generating a quick presentation on the exposure of industrial control
+systems for the USA. To get started, lets first get a general idea of what’s out there using the main
+Shodan website:
+https://www.shodan.io/search?query=category%3Aics¹⁶
+This returns a list of all devices running ICS protocols on the Internet. However, there are a lot
+of webservers and other protocols (SSH, FTP etc.) running on the same ports as industrial control
+systems which we need to filter out:
+¹⁵https://ics-cert.us-cert.gov/Report-Incident?
+¹⁶https://www.shodan.io/search?query=category%3Aics
+
+Industrial Control Systems
+
+57
+
+https://www.shodan.io/search?query=category%3Aics+-http+-html+-ssh+-ident¹⁷
+Note: if you have enterprise-level access you can use tag:ics instead of the above search
+query.
+Now we have a filtered list of devices running insecure ICS protocols. Since the focus of the
+presentation will be on the USA, it’s time to narrow the results to only IPs in the USA:
+https://www.shodan.io/search?query=category%3Aics+-http+-html+-ssh+-ident+country%3Aus¹⁸
+To get a big picture view of the data and have some charts to work with we can generate a free
+report¹⁹. This provides us with a better understanding of which ICS protocols are seen on the Internet
+in the US:
+
+Tridium’s Fox protocol, used by their Niagara framework, is the most popular ICS protocol in the
+US followed by BACnet and Modbus. The data shows that the majority of exposed devices are BMS
+used in offices, factories, stadiums, auditoriums and various facilities.
+The above chart was saved as an image using Nimbus Screen Capture²⁰ on Firefox, but you can also
+use the Awesome Screenshot Minus²¹ plug-in for Chrome.
+The report²² also highlights a common issue with ICS on the Internet: the majority of them are on
+mobile networks. This makes it especially difficult to track down and secure these devices.
+¹⁷https://www.shodan.io/search?query=category%3Aics+-http+-html+-ssh+-ident
+¹⁸https://www.shodan.io/search?query=category%3Aics+-http+-html+-ssh+-ident+country%3Aus
+¹⁹https://www.shodan.io/report/mHpcVgdq
+²⁰https://addons.mozilla.org/en-US/firefox/addon/nimbus-screenshot/
+²¹https://chrome.google.com/webstore/detail/awesome-screenshot-minus/bnophbnknjcjnbadhhkciahanapffepm?hl=en
+²²https://www.shodan.io/report/mHpcVgdq
+
+Industrial Control Systems
+
+58
+
+At this point, the data shows us the following:
+1. There are at least 65,000 ICS on the Internet exposing their raw, unauthenticated interfaces
+2. Nearly half of them (∼31,000) are in the US alone
+3. Buildings are the most commonly seen type of ICS
+4. Mobile networks host the largest amount
+Further Reading
+1. Distinguishing Internet-Facing Devices using PLC Programming Information²³
+2. NIST Special Publication - Guide to Industrial Control Systems Security²⁴
+3. Quantitatively Assessing and Visualizing Industrial System Attack Surfaces²⁵
+
+²³https://www.hsdl.org/?abstract&did=757013
+²⁴http://nvlpubs.nist.gov/nistpubs/SpecialPublications/NIST.SP.800-82r2.pdf
+²⁵https://www.cl.cam.ac.uk/~fms27/papers/2011-Leverett-industrial.pdf
+
+Industrial Control Systems
+
+59
+
+Identifying Honeypots
+Honeypots have become an increasingly popular and useful tool in understanding attackers. I’ve
+seen many misconfigured honeypots while scanning the Internet, here are a few tips to identify
+them or mistakes to avoid when setting them up.
+What is a honeypot?
+A honeypot is a device that pretends to be something it actually isn’t for the purpose of logging and
+monitoring network activity. In the case of control systems, an ICS honeypot is a regular computer
+that pretends to be a control system such as a factory or power plant. They are used to collect
+information on attackers, including which networks the attackers are targeting, what tools they’re
+using and many other useful insights that help defenders harden their network.
+In recent years, honeypots have been used to measure the number of attacks that have been
+attempted against industrial control systems connected to the Internet. However, it is critically
+important to understand proper honeypot deployment before trying to gather the data. Many people
+misconfigure their honeypots and I will outline how those mistakes make it trivial to determine
+whether a device is a real control system or a honeypot.
+The most popular and de-facto honeypot used to simulate industrial control systems is Conpot²⁶. The
+software is well-written and extremely powerful when properly configured. Most of the examples
+and discussion will be using Conpot but the principles apply to all honeypot software.
+Why Detect Them?
+The data that honeypots generate is only as good as their deployment. If we want to make informed
+decisions about who is attacking control systems we have to ensure the data is being gathered from
+realistic honeypots. Sophisticated attackers won’t be fooled by honeypots that are poorly configured.
+It’s important to raise awareness for common pitfalls when deploying honeypots to improve the
+quality of data being collected.
+Default Configurations
+The most common mistake that people make when deploying honeypots is using the default
+configuration. All default configurations return the same banner, including identical serial numbers,
+PLC names and many other fields that you would expect to vary from IP to IP.
+I first realized how common this problem is soon after doing the first Internet scan for Siemens S7:
+²⁶https://github.com/mushorg/conpot/
+
+Industrial Control Systems
+
+60
+
+30% of the serial numbers in the results were present in more than one banner. It doesn’t mean that
+all of the duplicate serial numbers are honeypots but it’s a good starting point for investigation.
+In the case of S7, the most popular serial number seen on the Internet is 88111222²⁷ which is the
+default serial number for Conpot.
+²⁷https://www.shodan.io/search?query=port%3A102+88111222
+
+Industrial Control Systems
+
+61
+
+Searching by the serial number makes it trivial to locate instances of Conpot on the Internet. And
+make sure to also change the other properties of the banner, not just the serial number:
+
+Industrial Control Systems
+
+62
+
+The above user changed the serial number to a unique value but failed to change the PLC name
+(Technodrome) and the plant identification (Mouser Factory). Every honeypot instance must have
+unique values in order to evade honeypot detection techniques.
+History Matters
+The honeypot has to be deployed properly from day 1 otherwise the banner history for the device
+will reveal it as a honeypot. For example:
+
+The above is a banner pretending to be a Siemens S7 PLC. However, there was an error in the
+template generating the banner and instead of showing a valid PLC name it shows the template’s
+random.randint(0,1) method. Shodan has indexed this banner and even if the bug is fixed in the
+future a user could look up the history for this IP and see that it used to have an invalid S7 banner.
+A sample Shodan API request for the history of an IP:
+host = api.host('xxx.xxx.xxx.xxx', history=True)
+
+Emulate Devices, Not Services
+Keep it simple, don’t try to emulate too many services at once. A honeypot should emulate a
+device and most real devices don’t run MongoDB, DNP3, MySQL, Siemens S7, Kamstrup, ModBus,
+Automated Tank Gauge, Telnet and SSH on the same IP.
+
+Industrial Control Systems
+
+63
+
+Think about how the device is configured in the real-world and then emulate it, don’t run every
+possible service simply because it’s possible.
+In code, you could use the number of ports as a metric:
+# Get information about the host
+host = api.host('xxx.xxx.xxx.xxx')
+# Check the number of open ports
+if len(host['ports']) > 10:
+print('{} looks suspicious'.format(host['ip_str']))
+else:
+print('{} has few ports open'.format(host['ip_str']))
+
+Location, Location, Location
+It isn’t just the software that needs to be properly configured, a honeypot also has to be hosted on a
+network that could reasonably have a control system. Putting a honeypot that simulates a Siemens
+PLC in the Amazon cloud doesn’t make any sense. Here are a few of the popular cloud hosting
+providers that should be avoided when deploying an ICS honeypot:
+1. Amazon EC2
+2. Rackspace
+3. Digital Ocean
+4. Vultr
+5. Microsoft Azure
+6. Google Cloud
+For realistic deployment, look at the most popular ISPs in Shodan for publicly accessible ICS.
+In general, it is better to put the honeypot in the IP space of a residential ISP. The following
+organizations are the common locations in the USA:
+
+Industrial Control Systems
+
+64
+
+Honeyscore
+I developed a tool called Honeyscore²⁸ that uses all of the aforementioned methods as well as
+machine learning to calculate a honeyscore and determine whether an IP is a honeypot or not.
+
+Simply enter the IP address of a device and the tool will perform a variety of checks to see whether
+it is a honeypot.
+Tag: honeypot
+The machine learning algorithm that powers Honeyscore has been ported to the crawlers so they’re
+able to determine ICS honeypots as they collect data. In addition, we’ve also added detection for
+²⁸https://honeyscore.shodan.io
+
+Industrial Control Systems
+
+65
+
+popular web application honeypots and a few Elastic honeypots. If a banner belongs to a known
+honeypot, then the tags property will contain the honeypot tag. The crawlers will also provide the
+name of the identified honeypot in the product property.
+Further Reading
+1. Wikipedia article on honeypots²⁹
+2. Breaking Honeypots for Fun and Profit (Video)³⁰
+²⁹https://en.wikipedia.org/wiki/Honeypot_%28computing%29
+³⁰https://www.youtube.com/watch?v=Pjvr25lMKSY
+
+Appendix A: Banner Specification
+For the latest list of fields that the banner contains please visit the online documentation³¹.
+A banner may contain the following properties/ fields:
+
+General Properties
+Name
+
+Description
+
+Example
+
+asn
+data
+ip
+ip_str
+ipv6
+port
+timestamp
+
+Autonomous system number
+Main banner for the service
+IP address as an integer
+IP address as a string
+IPv6 address as a string
+Port number for the service
+Date and time the information was
+collected
+Numeric hash of the data property
+List of hostnames for the IP
+List of domains for the IP
+Network link type
+Geographic location of the device
+Supplemental/ experimental data
+not contained in main banner
+Organization that is assigned the IP
+ISP that is responsible for the IP
+space
+Operating system
+Uptime of the IP in minutes
+List of tags that describe the
+purpose of the device
+(Enterprise-only)
+Type of transport protocol used to
+collect banner; either “udp” or “tcp”
+
+AS4837
+HTTP/1.1 200…
+493427495
+199.30.15.20
+2001:4860:4860::8888
+80
+2014-01-15T05:49:56.283713
+
+hash
+hostnames
+domains
+link
+location
+opts
+org
+isp
+os
+uptime
+tags
+transport
+
+[“shodan.io”, “www.shodan.io”]
+[“shodan.io”]
+Ethernet or modem
+see below
+Google Inc.
+Verizon Wireless
+Linux
+50
+[“ics”, “vpn”]
+tcp
+
+Elastic Properties
+The following properties are collected for Elastic (formerly ElasticSearch):
+³¹https://developer.shodan.io/api/banner-specification
+
+67
+
+Appendix A: Banner Specification
+
+Name
+
+Description
+
+elastic.nodes
+
+List of nodes/ peers for the cluster and their information
+
+HTTP(S) Properties
+Shodan follows redirects of HTTP responses and stores all intermediate data in the banner. The only
+time the crawlers don’t follow a redirect is if a HTTP request gets redirected to a HTTPS location
+and vice versa.
+Name
+
+Description
+
+http.host
+http.html
+http.html_hash
+http.location
+http.redirects
+
+Hostname sent to grab the website HTML
+HTML content of the website
+Numeric hash of the http.html property
+Location of the final HTML response
+List of redirects that were followed. Each redirect item has 3
+properties: host, data and location.
+robots.txt file for the website
+Server header from the HTTP response
+Sitemap XML for the website
+Title of the website
+
+http.robots
+http.server
+http.sitemap
+http.title
+
+Location Properties
+The following properties are sub-properties of the location property that is at the top-level of the
+banner record.
+Name
+
+Description
+
+area_code
+city
+country_code
+country_code3
+country_name
+dma_code
+latitude
+longitude
+postal_code
+region_code
+
+Area code of the device’s location
+Name of the city
+2-letter country code
+3-letter country code
+Full name of the country
+Designated market area code (US-only)
+Latitude
+Longitude
+Postal code
+Region code
+
+68
+
+Appendix A: Banner Specification
+
+SSH Properties
+Name
+
+Description
+
+ssh.cipher
+ssh.fingerprint
+ssh.kex
+ssh.key
+ssh.mac
+
+Cipher used during negotiation
+Fingerprint for the device
+List of key exchange algorithms that are supported by the server
+SSH key of the server
+Message authentication code algorithm
+
+SSL Properties
+If the service is wrapped in SSL then Shodan performs additional testing and makes the results
+available in the following properties:
+Name
+
+Description
+
+ssl.acceptable_cas
+ssl.cert
+ssl.cipher
+ssl.chain
+
+List of certificate authorities that the server accepts
+Parsed SSL certificate
+Preferred cipher for the SSL connection
+List of SSL certificates from the user certificate up to the root
+certificate
+Diffie-Hellman parameters
+List of TLS extensions that the server supports
+Supported SSL versions; if the value starts with a “-“ then the
+service does not support that version (ex. “-SSLv2” means the
+service doesn’t support SSLv2)
+
+ssl.dhparams
+ssl.tlsext
+ssl.versions
+
+ISAKMP Properties
+The following properties are collected for VPNs using the ISAKMP protocol (such as IKE):
+Name
+
+Description
+
+isakmp.initiator_spi
+
+Hex-encoded security parameter index for the
+initiator
+Hex-encoded security parameter index for the
+responder
+The next paylod sent after the initiation
+Protocol version; ex “1.0”
+Exchange t ype
+Encryption bit set: true or false
+Commit bit set: true or false
+Authentication bit set: true or false
+
+isakmp.responder_spi
+isakmp.next_payload
+isakmp.version
+isakmp.exchange_type
+isakmp.flags.encryption
+isakmp.flags.commit
+isakmp.flags.authentication
+
+69
+
+Appendix A: Banner Specification
+
+Name
+
+Description
+
+isakmp.msg_id
+isakmp.length
+
+Hex-encoded ID for the message
+Size of the ISAKMP packet
+
+Special Properties
+_shodan
+The _shodan property contains information about how the data was gathered by Shodan. It is
+different than al the other properties because it doesn’t provide information about the device.
+Instead, it will tell you which banner grabber Shodan was using to talk to the IP. This can be
+important to understand for ports where multiple services might be operating on. For example, port
+80 is most well-known for web servers but it’s also used by various malware to circumvent firewall
+rules. The _shodan property would let you know whether the http module was used to collect the
+data or whether a malware module was used.
+Name
+
+Description
+
+_shodan.crawler
+_shodan.id
+_shodan.module
+
+Unique ID that identifies the Shodan crawler
+Unique ID for this banner
+Name of the Shodan module used by the crawler to
+collect the banner
+Configuration options used during the data collection
+Hostname to use when sending web requests
+Unique ID of the banner that triggered the scan for this
+port/ service
+
+_shodan.options
+_shodan.hostname
+_shodan.options.referrer
+
+Example
+{
+"timestamp": "2014-01-16T08:37:40.081917",
+"hostnames": [
+"99-46-189-78.lightspeed.tukrga.sbcglobal.net"
+],
+"org": "AT&T U-verse",
+"guid": "1664007502:75a821e2-7e89-11e3-8080-808080808080",
+"data": "NTP\nxxx.xxx.xxx.xxx:7546\n68.94.157.2:123\n68.94.156.17:123",
+"port": 123,
+"isp": "AT&T U-verse",
+"asn": "AS7018",
+"location": {
+
+Appendix A: Banner Specification
+
+"country_code3": "USA",
+"city": "Atlanta",
+"postal_code": "30328",
+"longitude": -84.3972,
+"country_code": "US",
+"latitude": 33.93350000000001,
+"country_name": "United States",
+"area_code": 404,
+"dma_code": 524,
+"region_code": null
+},
+"ip": 1664007502,
+"domains": [
+"sbcglobal.net"
+],
+"ip_str": "99.46.189.78",
+"os": null,
+"opts": {
+"raw": "\\x97\\x00\\x03*\\x00\\x03\\x00H\\x00\\x00\\x00\\x00\\x00\\x00\
+\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x01G\\x06\\xa7\\x8ec.\\xbdN\\x00\\
+\x00\\x00\\x01\\x1dz\\x07\\x02\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\
+\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\
+\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\
+\\x00q\\x00\\x00\\x00i\\x00\\x00\\x00\\x00\\x00\\x00\\x00XD^\\x9d\\x02c.\\xbdN\\\
+x00\\x00\\x00\\x01\\x00{\\x04\\x04\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\
+\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\
+\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\
+\x00\\x00q\\x00\\x00\\x00o\\x00\\x00\\x00\\x00\\x00\\x00\\x00YD^\\x9c\\x11c.\\xb\
+dN\\x00\\x00\\x00\\x01\\x00{\\x04\\x04\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\\
+x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\\
+x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00\\x00",
+"ntp": {
+"more": false
+}
+}
+}
+
+70
+
+Appendix B: List of Search Filters
+General Filters
+Name
+
+Description
+
+Type
+
+after
+asn
+before
+category
+city
+country
+geo
+
+Only show results after the given date (dd/mm/yyyy)
+Autonomous system number
+Only show results before the given date (dd/mm/yyyy)
+Available categories: ics, malware
+Name of the city
+2-letter country code
+Accepts between 2 and 4 parameters. If 2 parameters:
+latitude,longitude. If 3 parameters:
+latitude,longitude,range. If 4 parameters: top left
+latitude, top left longitude, bottom right latitude,
+bottom right longitude.
+Hash of the data property
+True/ False
+True/ False
+Full hostname for the device
+Alias for net filter
+ISP managing the netblock
+Network range in CIDR notation (ex. 199.4.1.0/24)
+Organization assigned the netblock
+Operating system
+Port number for the service
+Postal code (US-only)
+Name of the software/ product providing the banner
+Name of the region/ state
+Alias for region
+Version for the product
+CVE ID for a vulnerability
+
+string
+string
+string
+string
+string
+string
+string
+
+hash
+has_ipv6
+has_screenshot
+hostname
+ip
+isp
+net
+org
+os
+port
+postal
+product
+region
+state
+version
+vuln
+
+HTTP Filters
+
+integer
+boolean
+boolean
+string
+string
+string
+string
+string
+string
+integer
+string
+string
+string
+string
+string
+string
+
+72
+
+Appendix B: List of Search Filters
+
+Name
+
+Description
+
+Type
+
+http.component
+http.component_category
+
+Name of web technology used on the website
+Category of web components used on the
+website
+HTML of web banners
+Hash of the website HTML
+Response status code
+Title for the web banner’s website
+
+string
+string
+
+http.html
+http.html_hash
+http.status
+http.title
+
+string
+integer
+integer
+string
+
+NTP Filters
+Name
+
+Description
+
+ntp.ip
+ntp.ip_count
+ntp.more
+
+IP addresses returned by monlist
+Number of IPs returned by initial monlist
+True/ False; whether there are more IP addresses to be
+gathered from monlist
+Port used by IP addresses in monlist
+
+ntp.port
+
+string
+integer
+boolean
+integer
+
+SSL Filters
+Name
+
+Description
+
+Type
+
+has_ssl
+ssl
+ssl.alpn
+
+True/ False
+Search all SSL data
+Application layer protocols such as HTTP/2
+(“h2”)
+Number of certificates in the chain
+Possible values: SSLv2, SSLv3, TLSv1,
+TLSv1.1, TLSv1.2
+Certificate algorithm
+True/ False
+Names of extensions in the certificate
+Serial number as an integer or hexadecimal
+string
+Number of bits in the public key
+Public key type
+SSL version of the preferred cipher
+Number of bits in the preferred cipher
+Name of the preferred cipher
+
+boolean
+string
+string
+
+ssl.chain_count
+ssl.version
+ssl.cert.alg
+ssl.cert.expired
+ssl.cert.extension
+ssl.cert.serial
+ssl.cert.pubkey.bits
+ssl.cert.pubkey.type
+ssl.cipher.version
+ssl.cipher.bits
+ssl.cipher.name
+
+Telnet Filters
+
+integer
+string
+string
+boolean
+string
+integer/ string
+integer
+string
+string
+integer
+string
+
+73
+
+Appendix B: List of Search Filters
+
+Name
+
+Description
+
+Type
+
+telnet.option
+telnet.do
+telnet.dont
+telnet.will
+telnet.wont
+
+Search all the options
+The server requests the client do support these options
+The server requests the client to not support these options
+The server supports these options
+The server doesn’t support these options
+
+string
+string
+string
+string
+string
+
+Appendix C: Search Facets
+General Facets
+Name
+
+Description
+
+asn
+city
+country
+domain
+has_screenshot
+isp
+link
+org
+os
+port
+postal
+product
+region
+state
+uptime
+version
+vuln
+
+Autonomous system number
+Full name of the city
+Full name of the country
+Domain(s) for the device
+Has screenshot available
+ISP managing the netblock
+Type of network connection
+Organization owning the netblock
+Operating system
+Port number for the service
+Postal code
+Name of the software/ product for the banner
+Name of the region/ state
+Alias for region
+Time in seconds that the host has been up
+Version of the product
+CVE ID for vulnerability
+
+HTTP Facets
+Name
+
+Description
+
+http.component
+http.component_category
+
+Name of web technology used on the website
+Category of web components used on the
+website
+Hash of the website HTML
+Response status code
+
+http.html_hash
+http.status
+
+NTP Facets
+
+string
+string
+integer
+integer
+
+75
+
+Appendix C: Search Facets
+
+Name
+
+Description
+
+ntp.ip
+ntp.ip_count
+ntp.more
+
+IP addresses returned by monlist
+Number of IPs returned by initial monlist
+True/ False; whether there are more IP addresses to be gathered
+from monlist
+Port used by IP addresses in monlist
+
+ntp.port
+
+SSH Facets
+Name
+
+Description
+
+ssh.cipher
+ssh.fingerprint
+ssh.mac
+ssh.type
+
+Name of the cipher
+Fingerprint for the device
+Name of MAC algorithm used (ex: hmac-sha1)
+Type of authentication key (ex: ssh-rsa)
+
+SSL Facets
+Name
+
+Description
+
+ssl.version
+ssl.alpn
+ssl.chain_count
+ssl.cert.alg
+ssl.cert.expired
+ssl.cert.serial
+ssl.cert.extension
+ssl.cert.pubkey.bits
+ssl.cert.pubkey
+ssl.cipher.bits
+ssl.cipher.name
+ssl.cipher.version
+
+SSL version supported
+Application layer protocols
+Number of certificates in the chain
+Certificate algorithm
+True/ False; certificate expired or not
+Certificate serial number as integer
+Name of certificate extensions
+Number of bits in the public key
+Name of the public key type
+Number of bits in the preferred cipher
+Name of the preferred cipher
+SSL version of the preferred cipher
+
+Telnet Facets
+Name
+
+Description
+
+telnet.option
+telnet.do
+telnet.dont
+telnet.will
+telnet.wont
+
+Show all options
+The server requests the client do support these options
+The server requests the client to not support these options
+The server supports these options
+The server doesn’t support these options
+
+Appendix D: List of Ports
+Port
+
+Service(s)
+
+7
+11
+13
+15
+17
+19
+21
+22
+23
+25
+26
+37
+49
+53
+67
+69
+70
+79
+80
+81
+82
+83
+84
+88
+102
+110
+111
+119
+123
+129
+137
+143
+161
+175
+179
+195
+311
+389
+
+Echo
+Systat
+Daytime
+Netstat
+Quote of the day
+Character generator
+FTP
+SSH
+Telnet
+SMTP
+SSH
+rdate
+TACACS+
+DNS
+DHCP
+TFTP, BitTorrent
+Gopher
+Finger
+HTTP, malware
+HTTP, malware
+HTTP, malware
+HTTP
+HTTP
+Kerberos
+Siemens S7
+POP3
+Portmapper
+NNTP
+NTP
+Password generator protocol
+NetBIOS
+IMAP
+SNMP
+IBM Network Job Entry
+BGP
+TA14-353a
+OS X Server Manager
+LDAP
+
+77
+
+Appendix D: List of Ports
+
+Port
+
+Service(s)
+
+443
+444
+445
+465
+500
+502
+503
+515
+520
+523
+554
+587
+623
+626
+636
+666
+771
+789
+873
+902
+992
+993
+995
+1010
+1023
+1025
+1099
+1177
+1200
+1234
+1434
+1521
+1604
+1723
+1741
+1833
+1900
+1911
+1962
+1991
+2000
+2082
+2083
+2086
+
+HTTPS
+TA14-353a, Dell SonicWALL
+SMB
+SMTPS
+IKE (VPN)
+Modbus
+Modbus
+Line Printer Daemon
+RIP
+IBM DB2
+RTSP
+SMTP mail submission
+IPMI
+OS X serialnumbered
+LDAPS
+Telnet
+Realport
+Redlion Crimson3
+rsync
+VMWare authentication
+Telnet (secure)
+IMAP with SSL
+POP3 with SSL
+malware
+Telnet
+Kamstrup
+Java RMI
+malware
+Codesys
+udpxy
+MS-SQL monitor
+Oracle TNS
+Citrix, malware
+PPTP
+CiscoWorks
+MQTT
+UPnP
+Niagara Fox
+PCworx
+malware
+iKettle, MikroTik bandwidth test
+cPanel
+cPanel
+WHM
+
+78
+
+Appendix D: List of Ports
+
+Port
+
+Service(s)
+
+2087
+2123
+2152
+2181
+2222
+2323
+2332
+2375
+2376
+2404
+2455
+2480
+2628
+3000
+3306
+3310
+3386
+3388
+3389
+3460
+3541
+3542
+3689
+3780
+3787
+4000
+4022
+4040
+4063
+4064
+4369
+4443
+4444
+4500
+4567
+4070
+4800
+4911
+4949
+5006
+5007
+5008
+5009
+5060
+
+WHM
+GTPv1
+GTPv1
+Apache Zookeeper
+SSH, PLC5, EtherNet/IP
+Telnet
+Sierra wireless (Telnet)
+Docker
+Docker
+IEC-104
+CoDeSys
+OrientDB
+Dictionary
+ntop
+MySQL
+ClamAV
+GTPv1
+RDP
+RDP
+malware
+PBX GUI
+PBX GUI
+DACP
+Metasploit
+Ventrilo
+malware
+udpxy
+Deprecated Chef web interface
+ZeroC Glacier2
+ZeroC Glacier2 with SSL
+EPMD
+Symantec Data Center Security
+malware
+IKE NAT-T (VPN)
+Modem web interface
+HID VertX/ Edge door controller
+Moxa Nport
+Niagara Fox with SSL
+Munin
+MELSEC-Q
+MELSEC-Q
+NetMobility
+Apple Airport Administration
+SIP
+
+79
+
+Appendix D: List of Ports
+
+Port
+
+Service(s)
+
+5094
+5222
+5269
+5353
+5357
+5432
+5577
+5632
+5672
+5900
+5901
+5938
+5984
+6000
+6379
+6666
+6667
+6881
+6969
+7218
+7474
+7548
+7777
+7779
+8010
+8060
+8069
+8087
+8090
+8099
+8112
+8139
+8140
+8181
+8333
+8334
+8443
+8554
+8880
+8888
+8889
+9001
+9002
+9051
+
+HART-IP
+XMPP
+XMPP Server-to-Server
+mDNS
+Microsoft-HTTPAPI/2.0
+PostgreSQL
+Flux LED
+PCAnywhere
+RabbitMQ
+VNC
+VNC
+TeamViewer
+CouchDB
+X11
+Redis
+Voldemort database, malware
+IRC
+BitTorrent DHT
+TFTP, BitTorrent
+Sierra wireless (Telnet)
+Neo4j database
+CWMP (HTTPS)
+Oracle
+Dell Service Tag API
+Intelbras DVR
+Roku web interface
+OpenERP
+Riak
+Insteon HUB
+Yahoo SmartTV
+Deluge (HTTP)
+Puppet agent
+Puppet master
+GlassFish Server (HTTPS)
+Bitcoin
+Bitcoin node dashboard (HTTP)
+HTTPS
+RTSP
+Websphere SOAP
+HTTP, Andromouse
+SmartThings Remote Access
+Tor OR
+Tor OR
+Tor Control
+
+80
+
+Appendix D: List of Ports
+
+Port
+
+Service(s)
+
+9100
+9151
+9160
+9191
+9418
+9443
+9595
+9600
+9869
+9009
+10001
+10243
+11211
+17000
+17185
+12345
+13579
+14147
+16010
+18245
+20000
+20547
+21025
+21379
+23023
+23424
+25105
+25565
+27015
+27017
+28017
+30313
+30718
+32400
+37777
+44818
+47808
+49152
+49153
+50070
+51106
+53413
+54138
+55553
+
+Printer Job Language
+Tor Control
+Apache Cassandra
+Sierra wireless (HTTP)
+Git
+Sierra wireless (HTTPS)
+LANDesk Management Agent
+OMRON
+OpenNebula
+Julia
+Automated Tank Gauge
+Microsoft-HTTPAPI/2.0
+Memcache
+Bose SoundTouch
+VxWorks WDBRPC
+Sierra wireless (Telnet)
+Media player classic web interface
+Filezilla FTP
+Apache Hbase
+General Electric SRTP
+DNP3
+ProconOS
+Starbound
+Matrikon OPC
+Telnet
+Serviio
+Insteon Hub
+Minecraft
+Steam A2S server query, Steam RCon
+MongoDB
+MongoDB (HTTP)
+Gardasoft Lighting
+Lantronix Setup
+Plex
+Dahuva DVR
+EtherNet/IP
+Bacnet
+Supermicro (HTTP)
+WeMo Link
+HDFS Namenode
+Deluge (HTTP)
+Netis backdoor
+Toshiba PoS
+Metasploit
+
+81
+
+Appendix D: List of Ports
+
+Port
+
+Service(s)
+
+55554
+62078
+64738
+
+Metasploit
+Apple iDevice
+Mumble
+
+Appendix E: Sample SSL Banner
+{
+"hostnames": [],
+"title": "",
+"ip": 2928565374,
+"isp": "iWeb Technologies",
+"transport": "tcp",
+"data": "HTTP/1.1 200 OK\r\nExpires: Sat, 26 Mar 2016 11:56:36 GMT\r\nExpire\
+s: Fri, 28 May 1999 00:00:00 GMT\r\nCache-Control: max-age=2592000\r\nCache-Cont\
+rol: no-store, no-cache, must-revalidate\r\nCache-Control: post-check=0, pre-che\
+ck=0\r\nLast-Modified: Thu, 25 Feb 2016 11:56:36 GMT\r\nPragma: no-cache\r\nP3P:\
+CP=\"NON COR CURa ADMa OUR NOR UNI COM NAV STA\"\r\nContent-type: text/html\r\n\
+Transfer-Encoding: chunked\r\nDate: Thu, 25 Feb 2016 11:56:36 GMT\r\nServer: sw-\
+cp-server\r\n\r\n",
+"asn": "AS32613",
+"port": 8443,
+"ssl": {
+"chain": ["-----BEGIN CERTIFICATE-----\nMIIDszCCApsCBFBTb4swDQYJKoZIhvcN\
+AQEFBQAwgZ0xCzAJBgNVBAYTAlVTMREw\nDwYDVQQIEwhWaXJnaW5pYTEQMA4GA1UEBxMHSGVybmRvbj\
+ESMBAGA1UEChMJUGFy\nYWxsZWxzMRgwFgYDVQQLEw9QYXJhbGxlbHMgUGFuZWwxGDAWBgNVBAMTD1Bh\
+cmFs\nbGVscyBQYW5lbDEhMB8GCSqGSIb3DQEJARYSaW5mb0BwYXJhbGxlbHMuY29tMB4X\nDTEyMDkx\
+NDE3NTUyM1oXDTEzMDkxNDE3NTUyM1owgZ0xCzAJBgNVBAYTAlVTMREw\nDwYDVQQIEwhWaXJnaW5pYT\
+EQMA4GA1UEBxMHSGVybmRvbjESMBAGA1UEChMJUGFy\nYWxsZWxzMRgwFgYDVQQLEw9QYXJhbGxlbHMg\
+UGFuZWwxGDAWBgNVBAMTD1BhcmFs\nbGVscyBQYW5lbDEhMB8GCSqGSIb3DQEJARYSaW5mb0BwYXJhbG\
+xlbHMuY29tMIIB\nIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAxc9Vy/qajKtFFnHxGOFPHTxm\
+\nSOnsffWBTBfyXnK3h8u041VxvZDh3XkpA+ptg2fWOuIT0TTYuqw+tqiDmg8YTsHy\njcpMFBtXV2cV\
+dhKXaS3YYlM7dP3gMmkGmH+ZvCgCYc7L9MIJxYJy6Zeuh67YxEMV\ngiU8mZpvc70Cg5WeW1uBCXtUAi\
+jDLsVWnhsV3YuxlweEvkRpAk3EHehKbvgMnEZS\nQ30QySe0GAqC7bWzKrwsJAOUk/+Js18+3QKb/LmD\
+a9cRjtFCTo6hYfPbfHj8RxQh\n4Xmnn/CtZ48wRQTqKXSO6+Zk3OuU7/jX1Gt/jxN6n77673e6uCsggT\
+wut/EtNwID\nAQABMA0GCSqGSIb3DQEBBQUAA4IBAQBb/yTy76Ykwr7DBOPAXc766n73OsZizjAt\n1k\
+mx7LxgN3X/wFxD53ir+sdOqbPgJl3edrE/ZG9dNl6LhUBbUK+9s6z9QicEfSxo\n4uQpFSywbGGmXInE\
+ZmyT4SsOLi/hNgy68f49LO1h6rn/p7QgIKd31g7189ZfFkFb\nRdD49s1l/Cc5Nm4XapUVvmnS91MlPk\
+/OOIg1Lu1rYkuc8sIoZdPbep52H3Ga7TjG\nkmO7nUIii0goB7TQ63mU67+NWHAmQQ8CtCDCN49kJyen\
+1WFjD6Je2U4q0IFQrxHw\nMy+tquo/n/sa+NV8QOj1gMVcFsLhYm7Z5ZONg0QFXSAL+Eyj/AwZ\n----\
+-END CERTIFICATE-----\n"],
+"cipher": {
+"version": "TLSv1/SSLv3",
+"bits": 256,
+
+Appendix E: Sample SSL Banner
+
+"name": "DHE-RSA-AES256-GCM-SHA384"
+},
+"alpn": [],
+"dhparams": {
+"prime": "b10b8f96a080e01dde92de5eae5d54ec52c99fbcfb06a3c69a6a9dca52\
+d23b616073e28675a23d189838ef1e2ee652c013ecb4aea906112324975c3cd49b83bfaccbdd7d90\
+c4bd7098488e9c219a73724effd6fae5644738faa31a4ff55bccc0a151af5f0dc8b4bd45bf37df36\
+5c1a65e68cfda76d4da708df1fb2bc2e4a4371",
+"public_key": "2e30a6e455730b2f24bdaf5986b9f0876068d4aa7a4e15c9a1b9c\
+a05a420e8fd3b496f7781a9423d3475f0bedee83f0391aaa95a738c8f0e250a8869a86d41bdb0194\
+66dba5c641e4b2b4b82db4cc2d4ea8d9804ec00514f30a4b6ce170b81c3e1ce4b3d17647c8e5b8f6\
+65bb7f588100bcc9a447d34d728c3709fd8a5b7753b",
+"bits": 1024,
+"generator": "a4d1cbd5c3fd34126765a442efb99905f8104dd258ac507fd6406c\
+ff14266d31266fea1e5c41564b777e690f5504f213160217b4b01b886a5e91547f9e2749f4d7fbd7\
+d3b9a92ee1909d0d2263f80a76a6a24c087a091f531dbf0a0169b6a28ad662a4d18e73afa32d779d\
+5918d08bc8858f4dcef97c2a24855e6eeb22b3b2e5",
+"fingerprint": "RFC5114/1024-bit MODP Group with 160-bit Prime Order\
+Subgroup"
+},
+"versions": ["TLSv1", "-SSLv2", "SSLv3", "TLSv1.1", "TLSv1.2"]
+},
+"html": "\n\t\t<html><head>\n\t\t<meta charset=\"utf-8\">\n\t\t<meta http-eq\
+uiv=\"X-UA-Compatible\" content=\"IE=edge,chrome=1\">\n\t\t<title></title>\n\t\t\
+<script language=\"javascript\" type=\"text/javascript\" src=\"/javascript/commo\
+n.js?plesk_version=psa-11.0.9-110120608.16\"/></script>\n\t\t<script language=\"\
+javascript\" type=\"text/javascript\" src=\"/javascript/prototype.js?plesk_versi\
+on=psa-11.0.9-110120608.16\"></script>\n\t\t<script>\n\t\t\tvar opt_no_frames = \
+false;\n\t\t\tvar opt_integrated_mode = false;\n\t\t</script>\n\t\t\n\t\t</head>\
+<body onLoad=\";top.location='/login.php3?window_id=&amp;requested_url=https%3A%\
+2F%2F174.142.92.126%3A8443%2F';\"></body><noscript>You will be redirected to the\
+new address in 15 seconds... If you are not automatically taken to the new loca\
+tion, please enable javascript or click the hyperlink <a href=\"/login.php3?wind\
+ow_id=&amp;requested_url=https%3A%2F%2F174.142.92.126%3A8443%2F\" target=\"top\"\
+>/login.php3?window_id=&amp;requested_url=https%3A%2F%2F174.142.92.126%3A8443%2F\
+</a>.</noscript></html><!--_____________________________________________________\
+________________________________________________________________________________\
+________________________________________________________________________________\
+_________________________IE error page size limitation__________________________\
+________________________________________________________________________________\
+________________________________________________________________________________\
+____________________________________________________-->",
+
+83
+
+Appendix E: Sample SSL Banner
+
+"location": {
+"city": null,
+"region_code": "QC",
+"area_code": null,
+"longitude": -73.5833,
+"country_code3": "CAN",
+"latitude": 45.5,
+"postal_code": "H3G",
+"dma_code": null,
+"country_code": "CA",
+"country_name": "Canada"
+},
+"timestamp": "2016-02-25T11:56:52.548187",
+"domains": [],
+"org": "iWeb Technologies",
+"os": null,
+"_shodan": {
+"options": {},
+"module": "https",
+"crawler": "122dd688b363c3b45b0e7582622da1e725444808"
+},
+"opts": {
+"heartbleed": "2016/02/25 03:56:45 ([]uint8) {\n 00000000 02 00 74 63 6\
+5 6e 73 75 73 2e 73 68 6f 64 61 6e |..tcensus.shodan|\n 00000010 2e 69 6f 53 \
+45 43 55 52 49 54 59 20 53 55 52 56 |.ioSECURITY SURV|\n 00000020 45 59 fe 7a\
+a2 0d fa ed 93 42 ed 18 b0 15 7d 6e |EY.z.....B....}n|\n 00000030 29 08 f6 f\
+8 ce 00 b1 94 b5 4b 47 ac dd 18 aa b9 |)........KG.....|\n 00000040 db 1c 01 \
+45 95 10 e0 a2 43 fe 8e ac 88 2f e8 75 |...E....C..../.u|\n 00000050 8b 19 5f\
+8c e0 8a 80 61 56 3c 68 0f e1 1f 73 9e |.._....aV<h...s.|\n 00000060 61 4f d\
+a db 90 ce 84 e3 79 5f 9d 6c a0 90 ff fa |aO......y_.l....|\n 00000070 d8 16 \
+e8 76 07 b2 e5 5e 8e 3e a4 45 61 2f 6a 2d |...v...^.>.Ea/j-|\n 00000080 5d 11\
+74 94 03 3c 5d
+|].t..<]|\n}\n\n2016/02/25 03:56:45\
+174.142.92.126:8443 - VULNERABLE\n",
+"vulns": ["CVE-2014-0160"]
+},
+"ip_str": "174.142.92.126"
+}
+
+84
+
+Exercise Solutions
+Website
+Exercise 1
+title:4sics
+
+Exercise 2
+rfb authentication disabled
+
+Exercise 3
+vuln:CVE-2014-0160 country:se ssl.version:sslv3
+vuln:CVE-2014-0160 org:"your organization"
+
+Exercise 4
+category:ics city:"your city name"
+
+Exercise 5
+category:malware country:us
+
+Command-Line Interface
+Exercise 1
+shodan download --limit -1 heartbleed-results country:se,no vuln:CVE-2014-0160
+shodan parse --filters location.country_code:SE -O heartbleed-sweden heartbleed-\
+results.json.gz
+
+Note: The –filters argument does case-sensitive searching on properties that are strings,
+hence the Swedish country code has to be upper-case.
+Exercise 2
+
+Exercise Solutions
+
+86
+
+mkdir data
+shodan stream --limit 1000 --datadir data/
+shodan convert data/* kml
+# Upload the KML file to https://www.google.com/maps/d/
+
+Exercise 3
+#!/bin/bash
+shodan download --limit -1 malware.json.gz category:malware
+for ip in `shodan parse --fields ip_str malware.json.gz`
+do
+iptables -A OUTPUT -d $ip -j DROP
+done
+
+Shodan API
+Replace YOUR_API_KEY with the API key for your account as seen on your Shodan Account
+website³².
+Exercise 1
+#!/usr/bin/env python
+# Initialize Shodan
+import shodan
+api = shodan.Shodan("YOUR_API_KEY")
+# Create a new alert
+alert = api.create_alert('My first alert', '198.20.69.0/24')
+try:
+# Subscribe to data for the created alert
+for banner in api.stream.alert(alert['id']):
+print banner
+except:
+# Cleanup if any error occurs
+api.delete_alert(alert['id'])
+
+Tip: Here is a solution using the Shodan command-line interface’s alert commands:
+³²https://account.shodan.io
+
+87
+
+Exercise Solutions
+
+# Create the alert
+shodan alert create "My first alert" 198.20.69.0/24
+# Subscribe to the real-time feed and store the data in the "/tmp" directory
+shodan stream --alerts=all --datadir=/tmp
+# Once we're done remove all alerts
+shodan alert clear
+
+Exercise 2
+mkdir images
+
+Run the above command to generate a directory to store the images in. Then save the following code
+in a file such as image-stream.py:
+#!/usr/bin/env python
+import shodan
+output_folder = 'images/'
+api = shodan.Shodan("YOUR_API_KEY")
+for banner in api.stream.banners():
+if 'opts' in banner and 'screenshot' in banner['opts']:
+# All the images are JPGs for now
+# TODO: Use the mimetype to determine file extension
+# TODO: Support IPv6 results
+# Create the file name using its IP address
+filename = '{}/{}.jpg'.format(output_folder, banner['ip_str'])
+# Create the file itself
+output = open(filename, 'w')
+# The images are encoded using base64
+output.write(banner['opts']['screenshot']['data'].decode('base64'))
+
+

@@ -313,5 +313,145 @@
   "lobe": "human",
   "file": "/home/cowboy/research-n-books/synthesis_45_9780857085399.md",
   "title": "The Art of Conversation"
+ },
+ {
+  "n": 46,
+  "isbn": "x9780000000460",
+  "lobe": "offensive",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_46_x9780000000460.md",
+  "title": "Complete Guide to Shodan: Collect, Analyze, Visualize"
+ },
+ {
+  "n": 47,
+  "isbn": "x9780000000477",
+  "lobe": "offensive",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_47_x9780000000477.md",
+  "title": "OSINT Techniques: Resources for Uncovering Online Information (11th Ed.)"
+ },
+ {
+  "n": 48,
+  "isbn": "x9780000000484",
+  "lobe": "offensive",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_48_x9780000000484.md",
+  "title": "Pentesting APIs and Cloud Applications"
+ },
+ {
+  "n": 49,
+  "isbn": "x9780000000491",
+  "lobe": "offensive",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_49_x9780000000491.md",
+  "title": "Reverse Engineering for Beginners"
+ },
+ {
+  "n": 50,
+  "isbn": "x9780000000507",
+  "lobe": "offensive",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_50_x9780000000507.md",
+  "title": "Physical Fault Injection and Side-Channel Attacks on Mobile Devices"
+ },
+ {
+  "n": 51,
+  "isbn": "x9780000000514",
+  "lobe": "defensive",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_51_x9780000000514.md",
+  "title": "Cyberjutsu: Cybersecurity for the Modern Ninja"
+ },
+ {
+  "n": 52,
+  "isbn": "x9780000000521",
+  "lobe": "defensive",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_52_x9780000000521.md",
+  "title": "Practical Malware Analysis"
+ },
+ {
+  "n": 53,
+  "isbn": "x9780000000538",
+  "lobe": "offensive",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_53_x9780000000538.md",
+  "title": "The IDA Pro Book"
+ },
+ {
+  "n": 54,
+  "isbn": "x9780000000545",
+  "lobe": "offensive",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_54_x9780000000545.md",
+  "title": "Hacking: The Art of Exploitation, 2nd Edition"
+ },
+ {
+  "n": 55,
+  "isbn": "9781558608290",
+  "lobe": "bio-compute",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_55_9781558608290.md",
+  "title": "Bioinformatics: Managing Scientific Data"
+ },
+ {
+  "n": 56,
+  "isbn": "9781118567814",
+  "lobe": "bio-compute",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_56_9781118567814.md",
+  "title": "Algorithmic and Artificial Intelligence Methods for Protein Bioinformatics"
+ },
+ {
+  "n": 57,
+  "isbn": "9781420010367",
+  "lobe": "bio-compute",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_57_9781420010367.md",
+  "title": "Introduction to Biological Networks"
+ },
+ {
+  "n": 58,
+  "isbn": "9781420087956",
+  "lobe": "bio-compute",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_58_9781420087956.md",
+  "title": "Biological Computation"
+ },
+ {
+  "n": 59,
+  "isbn": "9780323984638",
+  "lobe": "bio-compute",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_59_9780323984638.md",
+  "title": "Programming Massively Parallel Processors, 4th Edition"
+ },
+ {
+  "n": 60,
+  "isbn": "9780128042595",
+  "lobe": "bio-compute",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_60_9780128042595.md",
+  "title": "Emerging Trends in Applications and Infrastructures for Computational Biology, Bioinformatics, and Systems Biology"
+ },
+ {
+  "n": 61,
+  "isbn": "9781118097809",
+  "lobe": "bio-compute",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_61_9781118097809.md",
+  "title": "Computational Intelligence and Pattern Analysis in Biological Informatics"
+ },
+ {
+  "n": 62,
+  "isbn": "9781119386995",
+  "lobe": "bio-compute",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_62_9781119386995.md",
+  "title": "Meta-heuristic and Evolutionary Algorithms for Engineering Optimization"
+ },
+ {
+  "n": 63,
+  "isbn": "9781439836613",
+  "lobe": "bio-compute",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_63_9781439836613.md",
+  "title": "Computational and Visualization Techniques for Structural Bioinformatics Using Chimera"
+ },
+ {
+  "n": 64,
+  "isbn": "9781848218079",
+  "lobe": "bio-compute",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_64_9781848218079.md",
+  "title": "Evolutionary Computation with Biogeography-based Optimization"
+ },
+ {
+  "n": 65,
+  "isbn": "9781394214181",
+  "lobe": "bio-compute",
+  "file": "/home/cowboy/chainsaw/syntheses/synthesis_65_9781394214181.md",
+  "title": "Bio-Inspired Optimization for Medical Data Mining"
  }
 ]
