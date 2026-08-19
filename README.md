@@ -210,7 +210,7 @@ honest finding instead of an inked drama off one scan row.
 
 ## Provenance and boundary
 
-Built by Nuclide (Nick + Claude) from the "Research-N" O'Reilly Learning
+Built by  (Nick + Claude) from the "Research-N" O'Reilly Learning
 playlist, 65 books read in full. The full texts and syntheses are copyrighted
 O'Reilly content. This is a PRIVATE repo: the full texts live here with the map
 so the brain is whole in one place. Keep it private. Do not make it public and

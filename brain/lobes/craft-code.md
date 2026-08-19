@@ -29,7 +29,7 @@ Sequence by stage of the artifact. 7 sets the order and the reversible-first dis
 
 ## Reach for the lobe when
 - Writing or auditing tool source, a finding, or a disclosure another reader verifies
-- Building dashboard glyphs, severity icons, ASCII box diagrams, the NuClide UI look
+- Building dashboard glyphs, severity icons, ASCII box diagrams, the  UI look
 - Triaging raw tool output (a metric, a hit, a crash) into a real finding
 - Shipping a repo: commits, diffs, PRs, README, GitHub-misconfig enumeration
 - Naming variables that hold secrets, network input, or units

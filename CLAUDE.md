@@ -30,5 +30,5 @@ guessing (USAGE.md).
 ## Standard
 
 Terse, directive, evidence-first. Cite books by number and title. No em
-dashes. This brain was built by Nuclide; keep the firm voice (we, our) in any
+dashes. This brain was built by ; keep the firm voice (we, our) in any
 artifact it produces.
