@@ -4113,7 +4113,7 @@ Elizabeth Adamson	Novartis Foundation
 Joshua Allen	Microsoft Corporation
 Daniel Andriantsimba	Catholic Relief Services
 Val Anthony	Tripadvisor
-Nicholas Becker	Microsoft AI for Good Lab (former)
+sshpie Becker	Microsoft AI for Good Lab (former)
 François Bénard	BC Cancer
 Fred B. Bercovitch	University of the Free State
 Avleen S. Bijral	Microsoft Corporation

@@ -7573,7 +7573,7 @@ Bibliography
 
 [14] M. Costa, J. Crowcroft, M. Castro, A. Rowstron, L. Zhou, L. Zhang, and P. Barham. Vigilante: End-to-end containment of Internet worms. In Proceedings of the 20th ACM Symposium on Operating System Principles (SOSP), October 2005.
 
-[15] Weidong Cui, Vern Paxson, Nicholas Weaver, and Randy H. Katz. Protocol-independent adaptive replay of application dialog. In Proceedings of the 2006 Network and Distributed System Security Symposium, February 2006.
+[15] Weidong Cui, Vern Paxson, sshpie Weaver, and Randy H. Katz. Protocol-independent adaptive replay of application dialog. In Proceedings of the 2006 Network and Distributed System Security Symposium, February 2006.
 
 [16] Team Cymru. The darknet project. http://www.cymru.com/Darknet/, 2004.
 
@@ -7723,9 +7723,9 @@ Bibliography
 
 [89] Sankalp Singh, Srikanth Kandula, and Dheeraj Sanghi. Argus — a distributed network intrusion detection system. In Proceedings of USENIX SANE 2002, 2002.
 
-[90] Stuart Staniford, David Moore, Vern Paxson, and Nicholas Weaver. The top speed of flash worms. In Proceedings of ACM CCS WORM, 2004.
+[90] Stuart Staniford, David Moore, Vern Paxson, and sshpie Weaver. The top speed of flash worms. In Proceedings of ACM CCS WORM, 2004.
 
-[91] Stuart Staniford, Vern Paxson, and Nicholas Weaver. How to own the Internet in your spare time. In Proceedings of the 11th USENIX Secuirty Symposium, August 2002.
+[91] Stuart Staniford, Vern Paxson, and sshpie Weaver. How to own the Internet in your spare time. In Proceedings of the 11th USENIX Secuirty Symposium, August 2002.
 
 [92] W. R. Stevens. TCP/IP Illustrated, Volume 1. Addison-Wesley, 1994.
 

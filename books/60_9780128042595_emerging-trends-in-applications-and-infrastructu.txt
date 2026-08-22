@@ -1333,7 +1333,7 @@ References
 [4] Cristea V. Algorithmi de prelucrare paralela. Romania: MatrixRom Publishing; 2002 p. 116.
 [5] Niculescu V. Calcul parallel. Proiectare si dezvoltare formala a programelor paralele. Romania: Presa Universitara Clujeana Publishing; 2005 p. 52.
 [6] Chandra R., Dagum L., Kohr D., Maydan D., McDonald J., Menon R. Parallel programming in OpenMP. San Francisco, CA: Morgan Kaufmann; 2001 p. 4.
-[7] Nicholas T.K., Toonen B., Foster I. MPICH-G2: a grid-enabled implementation of the message passing interface. J Parallel Distrib Comput. 2003;63(5):551–563.
+[7] sshpie T.K., Toonen B., Foster I. MPICH-G2: a grid-enabled implementation of the message passing interface. J Parallel Distrib Comput. 2003;63(5):551–563.
 [8] Chapman B., Huang L. In: Parallel computing: architectures, algorithms and applications. Netherlands: Ios Press Publishing; 4. Advances in parallel computing. 2008;vol. 15.
 [9] Gabriel E., et al. Open MPI: goals, concepts and design of the next generation MPI implementation. In: Recent advances in parallel virtual machines and message passing interface. Springer Berlin Heidelberg; 98. Lecture notes in computer science. 2004;vol. 3241.
 
